@@ -14,18 +14,30 @@
 
     <section id="section-list" class="section-list-villagers">
       <MusicCard
-        v-for="music in musics"
+        v-for="music in musicsFiltered"
         :key="music.id"
         :id="music.id"
         :name="music.name"
         :image="music.image_url"
       />
     </section>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-if="musics.length > maxItemsPerPage"
+        v-model="currentPage"
+        color="#000"
+        active-text-color="#000"
+        active-color="secondary"
+        :max="Math.ceil(musics.length/maxItemsPerPage)"
+        :max-pages="10"
+      />
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 
 import MusicCard from "@/components/Cards/Music.vue";
 
@@ -36,6 +48,16 @@ const $q = useQuasar();
 const musicsStore = useMusicsStore();
 
 const musics = ref<Music[]>([]);
+
+const currentPage = ref(1);
+const maxItemsPerPage = ref(21);
+
+const musicsFiltered = computed(() => {
+  return musics.value.slice(
+    (currentPage.value - 1) * maxItemsPerPage.value,
+    (currentPage.value - 1) * maxItemsPerPage.value + maxItemsPerPage.value
+  )
+});
 
 onBeforeMount(async () => {
   try {

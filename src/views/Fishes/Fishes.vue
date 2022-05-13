@@ -18,7 +18,7 @@
 
     <section id="section-list">
       <FishCard
-        v-for="fish in fishes"
+        v-for="fish in fishesFiltered"
         :key="fish.id"
         :id="fish.id"
         :name="fish.name"
@@ -27,11 +27,23 @@
         :show-item-collection="true"
       />
     </section>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-if="fishes.length > maxItemsPerPage"
+        v-model="currentPage"
+        color="#000"
+        active-text-color="#000"
+        active-color="secondary"
+        :max="Math.ceil(fishes.length/maxItemsPerPage)"
+        :max-pages="10"
+      />
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 
 import FishCard from "@/components/Cards/Fish.vue";
 
@@ -42,6 +54,16 @@ const $q = useQuasar();
 const fishesStore = useFishesStore();
 
 const fishes = ref<Fish[]>([]);
+
+const currentPage = ref(1);
+const maxItemsPerPage = ref(21);
+
+const fishesFiltered = computed(() => {
+  return fishes.value.slice(
+    (currentPage.value - 1) * maxItemsPerPage.value,
+    (currentPage.value - 1) * maxItemsPerPage.value + maxItemsPerPage.value
+  )
+});
 
 onBeforeMount(async () => {
   try {

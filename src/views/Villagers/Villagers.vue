@@ -66,18 +66,30 @@
 
     <section id="section-list">
       <VillagerCard
-        v-for="villager in villagers"
+        v-for="villager in villagersFiltered"
         :key="villager.id"
         :id="villager.id"
         :name="villager.name"
         :image="villager.image_url"
       />
     </section>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-if="villagers.length > maxItemsPerPage"
+        v-model="currentPage"
+        color="#000"
+        active-text-color="#000"
+        active-color="secondary"
+        :max="Math.ceil(villagers.length/maxItemsPerPage)"
+        :max-pages="10"
+      />
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, reactive, ref } from "vue";
+import { onBeforeMount, reactive, ref, computed } from "vue";
 
 import { useQuasar } from "quasar";
 
@@ -106,6 +118,16 @@ const species = ref<Specie[]>([]);
 const personalities = ref<Personality[]>([]);
 
 const villagers = ref<Villager[]>([]);
+
+const currentPage = ref(1);
+const maxItemsPerPage = ref(21);
+
+const villagersFiltered = computed(() => {
+  return villagers.value.slice(
+    (currentPage.value - 1) * maxItemsPerPage.value,
+    (currentPage.value - 1) * maxItemsPerPage.value + maxItemsPerPage.value
+  )
+});
 
 onBeforeMount(async () => {
   try {
