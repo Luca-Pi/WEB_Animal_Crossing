@@ -7,16 +7,23 @@
         </q-card-section>
         <q-card-section>
           <q-form @submit="register" class="q-gutter-md">
-            <q-input v-model="form.email" type="text" label="Adresse e-mail" />
+            <q-input
+              v-model="form.email"
+              type="text"
+              label="Adresse e-mail"
+              :rules="[val => !!val || 'Le champ email est requis']"
+            />
             <q-input
               v-model="form.username"
               type="text"
               label="Nom d'utilisateur"
+              :rules="[val => !!val || 'Le champ pseudo est requis']"
             />
             <q-input
               v-model="form.password"
               :type="showPassword ? 'text' : 'password'"
               label="Mot de passe"
+              :rules="[val => !!val || 'Le champ mot de passe est requis']"
             >
               <template v-slot:append>
                 <q-icon
@@ -30,6 +37,7 @@
               v-model="form.password_confirmation"
               :type="showPassword ? 'text' : 'password'"
               label="Confirmation du mot de passe"
+              :rules="[val => rulesPassword(val)]"
             >
               <template v-slot:append>
                 <q-icon
@@ -95,6 +103,16 @@ async function register() {
       });
     }
   }
+}
+
+function rulesPassword(value) {
+  if (value.length === 0) {
+    return 'Veuillez renseigner à nouveau le mot de passe';
+  }
+  if (value !== form.password) {
+    return 'Les mots de passe ne sont pas identique';
+  }
+  return null;
 }
 
 const showPassword = ref(false);

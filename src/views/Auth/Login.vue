@@ -8,14 +8,16 @@
         <q-card-section>
           <q-form @submit="login" class="q-gutter-md">
             <q-input
-              v-model="form.username"
-              type="text"
+              v-model="form.email"
+              type="email"
               label="Nom d'utilisateur"
+              :rules="[val => !!val || 'Le champ email est requis']"
             />
             <q-input
               v-model="form.password"
               :type="showPassword ? 'text' : 'password'"
               label="Mot de passe"
+              :rules="[val => !!val || 'Le champ mot de passe est requis']"
             >
               <template v-slot:append>
                 <q-icon
@@ -59,15 +61,15 @@ const $q = useQuasar();
 const userStore = useUserStore();
 
 const form = reactive({
-  username: "",
+  email: "",
   password: "",
 });
 
 async function login() {
-  const { username, password } = form;
+  const { email, password } = form;
 
   try {
-    await userStore.login({ email: username, password });
+    await userStore.login({ email, password });
     router.push({ name: "profile" });
 
     $q.notify({
