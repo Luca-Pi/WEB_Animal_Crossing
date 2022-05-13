@@ -14,18 +14,30 @@
 
     <section id="section-list">
       <CharacterCard
-        v-for="character in characters"
+        v-for="character in charactersFiltered"
         :key="character.id"
         :id="character.id"
         :name="character.name"
         :image="character.photoImage"
       />
     </section>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-if="characters.length > maxItemsPerPage"
+        v-model="currentPage"
+        color="#000"
+        active-text-color="#000"
+        active-color="secondary"
+        :max="Math.ceil(characters.length/maxItemsPerPage)"
+        :max-pages="10"
+      />
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 
 import CharacterCard from "@/components/Cards/Character.vue";
 
@@ -36,6 +48,16 @@ const $q = useQuasar();
 const charactersStore = useCharactersStore();
 
 const characters = ref<Character[]>([]);
+
+const currentPage = ref(1);
+const maxItemsPerPage = ref(21);
+
+const charactersFiltered = computed(() => {
+  return characters.value.slice(
+    (currentPage.value - 1) * maxItemsPerPage.value,
+    (currentPage.value - 1) * maxItemsPerPage.value + maxItemsPerPage.value
+  )
+});
 
 onBeforeMount(async () => {
   try {

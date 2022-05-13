@@ -17,18 +17,30 @@
 
     <section id="section-list">
       <SeaCreatureCard
-        v-for="seaCreature in seaCreatures"
+        v-for="seaCreature in seaCreaturesFiltered"
         :key="seaCreature.id"
         :id="seaCreature.id"
         :name="seaCreature.name"
         :image="seaCreature.image_url"
       />
     </section>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-if="seaCreatures.length > maxItemsPerPage"
+        v-model="currentPage"
+        color="#000"
+        active-text-color="#000"
+        active-color="secondary"
+        :max="Math.ceil(seaCreatures.length/maxItemsPerPage)"
+        :max-pages="10"
+      />
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 
 import SeaCreatureCard from "@/components/Cards/SeaCreature.vue";
 
@@ -39,6 +51,16 @@ const $q = useQuasar();
 const seaCreaturesStore = useSeaCreaturesStore();
 
 const seaCreatures = ref<SeaCreature[]>([]);
+
+const currentPage = ref(1);
+const maxItemsPerPage = ref(21);
+
+const seaCreaturesFiltered = computed(() => {
+  return seaCreatures.value.slice(
+    (currentPage.value - 1) * maxItemsPerPage.value,
+    (currentPage.value - 1) * maxItemsPerPage.value + maxItemsPerPage.value
+  )
+});
 
 onBeforeMount(async () => {
   try {
