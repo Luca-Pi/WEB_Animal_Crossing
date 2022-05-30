@@ -91,8 +91,6 @@ export const useUserStore = defineStore("userStore", () => {
         )
       ).data;
 
-      if (!success) return reject(message);
-
       user.value = {};
 
       return resolve(true);
