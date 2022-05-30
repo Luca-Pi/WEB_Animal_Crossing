@@ -2,8 +2,8 @@
   <q-footer class="footer">
     <section id="first-section-footer">
       <div class="list-footer">
-        <span class="text-white">Island Crossing</span>
         <q-list v-if="userStore.user.id">
+          <span class="text-white text-title">Island Crossing</span>
           <q-item dense class="text-white" :to="{ name: 'profile' }">Profile</q-item>
           <q-item dense v-if="$router.currentRoute.value.name !== 'home'" class="text-white" :to="{ name: 'home' }+ '/#section-happy-birthday'">Anniversaire</q-item>
         </q-list>
