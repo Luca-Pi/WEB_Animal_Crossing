@@ -1,0 +1,33 @@
+.bubble--bg{
+    /* background-image: url("/images/svg/bg--info.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; */
+    /* clip-path: url(#clip-path); */
+    min-height: 383px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 10%;
+    min-width: 50vw;
+    position: relative;
+
+}
+span.label{
+    background-color: #E86E88;
+    position: absolute;
+    top: 30px;
+    left: -10px;
+    transform: rotate(-20deg);
+    padding:10px 25px;
+    color: white;
+    border-radius: 99px;
+    font-size: 1.3rem;
+}
+
+svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;;
+}

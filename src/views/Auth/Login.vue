@@ -1,8 +1,8 @@
 <template>
-  <q-page padding>
-    <div class="row justify-center">
-      <div class="card--form">
-        <q-form @submit="login" class="q-gutter-md">
+  <q-page>
+    <div class="row justify-center items-center form--container">
+      <q-form @submit="login" class="q-gutter-md">
+        <Bubble txt="Connexion">
           <q-input
             v-model="form.email"
             type="email"
@@ -23,24 +23,22 @@
               />
             </template>
           </q-input>
-          <div>
-            <q-btn
-              type="submit"
-              label="Confirmer"
-              color="primary"
-              class="full-width"
-            />
-          </div>
-          <div>
-            <RouterLink to="/">Mot de passe oublié ?</RouterLink>
-          </div>
-          <div>
-            Pas de compte ?
-            <RouterLink to="/register">S'inscrire</RouterLink>
-          </div>
-        </q-form>
-      </div>
+        </Bubble>
+        <div class="text-center">
+          <q-btn
+            type="submit"
+            label="Confirmer"
+          />
+        </div>
+      </q-form>
     </div>
+    <Cliff>
+        <div class="link--container">
+          <RouterLink to="/">Mot de passe oublié ?</RouterLink>
+          <span>Pas de compte ?</span>
+          <RouterLink to="/register">S'inscrire</RouterLink>
+        </div>
+    </Cliff>
   </q-page>
 </template>
 
@@ -51,6 +49,9 @@ import router from "@/router";
 
 import { useQuasar } from "quasar";
 import { useUserStore } from "@/stores/user";
+
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 const $q = useQuasar();
 const userStore = useUserStore();
@@ -84,3 +85,6 @@ function togglePassword() {
   showPassword.value = !showPassword.value;
 }
 </script>
+<style lang="scss">
+  @import "@/assets/scss/login_register.scss";
+</style>
