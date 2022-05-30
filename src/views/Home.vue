@@ -110,8 +110,9 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, onMounted, ref, nextTick } from "vue";
 import router from "@/router";
+import { useRouter } from 'vue-router'
 
 import moment from "moment";
 import { useQuasar } from "quasar";
@@ -131,6 +132,7 @@ interface ItemMenu {
 }
 
 const $q = useQuasar();
+const $router = useRouter();
 
 const dateNow = ref(moment().format("DD/MM"));
 const villagersStore = useVillagersStore();
@@ -218,6 +220,10 @@ function goToFicheVillager(idVillager: number | undefined) {
 onBeforeMount(async () => {
   try {
     villagersBirthdays.value = await villagersStore.getVillagersBirthdays();
+    var section=$router.currentRoute.value.hash.replace("#", "");
+  if (section) {
+    nextTick(()=> window.document.getElementById(section).scrollIntoView());
+  }
   } catch (error) {
     $q.notify({
       message: "Une erreur est survenu. Veuillez conctacter un administrateur.",
