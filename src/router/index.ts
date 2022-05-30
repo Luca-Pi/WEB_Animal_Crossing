@@ -7,6 +7,7 @@ import Login from "@/views/Auth/Login.vue";
 import Register from "@/views/Auth/Register.vue";
 import Profile from "@/views/Auth/Profile.vue";
 import ProfileUpdate from "@/views/Auth/ProfileUpdate.vue";
+import NotFound from "@/views/Auth/404.vue";
 
 // Blog
 import Blog from "@/views/Blog/Blog.vue";
@@ -205,6 +206,10 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    { 
+      path: '/404',
+      component: NotFound
+    },  
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
