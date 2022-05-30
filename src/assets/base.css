@@ -115,3 +115,11 @@ table, td, th {
   bottom: 0;
   font-size: 1.4em;
 }
+
+main{
+  overflow: hidden;
+}
+
+.form--container{
+  min-height: 65vh;
+}
