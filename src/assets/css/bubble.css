@@ -1,28 +1,24 @@
 .bubble--bg{
-    /* background-image: url("/images/svg/bg--info.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat; */
-    /* clip-path: url(#clip-path); */
-    min-height: 383px;
+    background-color: #FFFAE4;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-inline: 10%;
     min-width: 50vw;
+    min-height: 150px;
     position: relative;
-
 }
-span.label{
+
+.label{
     background-color: #E86E88;
     position: absolute;
-    top: 30px;
-    left: -10px;
+    top: -15px;
+    left: -35px;
     transform: rotate(-20deg);
-    padding:10px 25px;
     color: white;
     border-radius: 99px;
-    font-size: 1.3rem;
+    font-size: 1rem;
+    padding:5px 15px;
 }
 
 svg{
@@ -30,4 +26,20 @@ svg{
     top: 0;
     left: 0;
     max-width: 100%;;
+}
+@media (min-width:992px) {
+    .bubble--bg{
+        background-color: unset;
+        background-image: url("/images/svg/bg--info.svg");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 383px;
+    }
+    .label{
+        top: 30px;
+        left: -10px;
+        font-size: 1.3rem;
+        padding:10px 25px;
+    }
 }
