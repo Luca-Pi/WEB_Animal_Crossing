@@ -35,7 +35,6 @@
     <Cliff>
         <div class="link--container">
           <RouterLink to="/">Mot de passe oublié ?</RouterLink>
-          <span>Pas de compte ?</span>
           <RouterLink to="/register">S'inscrire</RouterLink>
         </div>
     </Cliff>

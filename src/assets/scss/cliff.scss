@@ -20,7 +20,11 @@
 .link--container{
     color: white;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 30px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     a{
         color: white;
     }
