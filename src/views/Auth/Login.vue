@@ -83,6 +83,7 @@ const showPassword = ref(false);
 function togglePassword() {
   showPassword.value = !showPassword.value;
 }
+
 </script>
 <style lang="scss">
   @import "@/assets/scss/login_register.scss";

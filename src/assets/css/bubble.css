@@ -30,14 +30,14 @@ svg{
 @media (min-width:992px) {
     .bubble--bg{
         background-color: unset;
-        background-image: url("/images/svg/bg--info.svg");
+        background-image: url("/images/svg/bg--large.svg");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
         min-height: 383px;
     }
     .label{
-        top: 30px;
+        top: -2%;
         left: -10px;
         font-size: 1.3rem;
         padding:10px 25px;
