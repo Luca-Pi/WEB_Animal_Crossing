@@ -11,7 +11,7 @@
       ></div>
     </div>
     <div class="sea-creature-name">
-      <span class="text-white">{{ name }}</span>
+      <span>{{ name }}</span>
     </div>
   </div>
 </template>
