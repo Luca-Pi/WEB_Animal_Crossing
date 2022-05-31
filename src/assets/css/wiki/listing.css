@@ -7,9 +7,13 @@
 }
 
 .listing-bulle-header {
-	max-width: 80%;
+	max-width: 75%;
 	margin: 15px auto;
-	padding: 0 6%;
+	padding: 0 8%;
+}
+
+.listing-bulle-header p {
+	margin-top:15px;
 }
 
 #section-filters > .field {
