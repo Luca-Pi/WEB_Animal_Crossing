@@ -71,11 +71,22 @@ export const useFishesStore = defineStore("fishesStore", () => {
     });
   }
 
+  function getFishesFiltered(params: string): Promise<Fish[]> {
+    return new Promise(async (resolve, reject) => {
+      const fishes = (
+        await http.get(`/api/fishes/search?api_token=${getToken}${params}`)
+      ).data;
+
+      return resolve(fishes);
+    });
+  }
+
   return {
     getFishes,
     getFish,
     getFishesUser,
     addFishInCollection,
     removeFishFromCollection,
+    getFishesFiltered,
   };
 });

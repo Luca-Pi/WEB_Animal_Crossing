@@ -16,6 +16,28 @@
       </q-card-section>
     </q-card>
 
+    <q-card-section id="section-filters">
+      <q-select
+        v-model="filters.name"
+        label="Nom du poisson"
+        :options="fishes"
+        class="field"
+        option-value="name"
+        emit-value
+        option-label="name"
+        @update:model-value="filtersFishes()"
+        clearable
+      />
+      <q-toggle
+        v-model="filters.hasFish"
+        label="Est dans ma collection"
+        class="field"
+        emit-value
+        @update:model-value="filtersFishes()"
+        clearable
+      />
+    </q-card-section>
+
     <section id="section-list">
       <FishCard
         v-for="fish in fishesFiltered"
@@ -43,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, computed } from "vue";
+import { onBeforeMount, reactive, ref, computed } from "vue";
 
 import FishCard from "@/components/Cards/Fish.vue";
 
@@ -58,6 +80,11 @@ const fishes = ref<Fish[]>([]);
 const currentPage = ref(1);
 const maxItemsPerPage = ref(21);
 
+const filters = reactive({
+  name: "",
+  hasFish: "",
+});
+
 const fishesFiltered = computed(() => {
   return fishes.value.slice(
     (currentPage.value - 1) * maxItemsPerPage.value,
@@ -68,6 +95,7 @@ const fishesFiltered = computed(() => {
 onBeforeMount(async () => {
   try {
     fishes.value = await fishesStore.getFishes();
+    console.log((fishes.value))
   } catch (error) {
     $q.notify({
       message: "Une erreur est survenu. Veuillez conctacter un administrateur.",
@@ -75,6 +103,16 @@ onBeforeMount(async () => {
     });
   }
 });
+
+async function filtersFishes() {
+  let query =
+    "&name=" +
+    (filters.name || "") +
+    "&hasFish=" +
+    (filters.hasFish || "")
+  fishes.value = await fishesStore.getFishesFiltered(query);
+  console.log(fishes.value)
+}
 </script>
 
 <style scoped>
