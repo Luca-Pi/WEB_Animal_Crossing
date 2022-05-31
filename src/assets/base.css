@@ -123,3 +123,10 @@ main{
 .form--container{
   min-height: 65vh;
 }
+
+.detail-image {
+	max-height: 250px;
+	position: absolute;
+	bottom: -5%;
+	z-index: 2;
+}

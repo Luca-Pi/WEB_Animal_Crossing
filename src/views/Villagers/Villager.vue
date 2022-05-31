@@ -2,7 +2,7 @@
   <q-page  v-if="villager">
     <div class="row q-mt-xl">
       <div class="col flex items-end">
-        <q-img :src="villager.image_url" class="villager-image" fit="contain" />
+        <q-img :src="villager.image_url" class="detail-image" fit="contain" />
       </div>
       <div class="col flex items-end q-mb-xl">
         <Bubble :txt="villager.name">
@@ -28,12 +28,6 @@
               <p class="info">{{ villager.phrase }}</p>
             </div>
           </div>
-          
-          
-          
-          
-          
-          
         </Bubble>
       </div>
     </div>
