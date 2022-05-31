@@ -100,7 +100,7 @@
       </q-card>
       <q-card
         class="text-center col-4 q-ma-lg bg-accent"
-        v-if="listCreature && listCreature.length > 0"  
+        v-if="listSeaCreature && listSeaCreature.length > 0"  
       >
         <q-card-section>
           <div class="text-left text-bold">
@@ -113,9 +113,9 @@
               :pagination="{ clickable: true }"
               :space-between="5"
           >
-            <swiper-slide v-for="creature in listCreature" :key="creature.id">
+            <swiper-slide v-for="creature in listSeaCreature" :key="creature.id">
               <router-link
-                :to="{ name: 'creature', params: { id: creature.id } }"
+                :to="{ name: 'sea-creature', params: { id: creature.id } }"
               >
                 <img class="img-creatures-swiper" :src="creature.image_url">
               </router-link>
@@ -143,13 +143,14 @@ import "swiper/css/pagination";
 import { useUserStore } from "@/stores/user";
 import { useInsectsStore, type Insect } from "@/stores/insects";
 import { useFishesStore, type Fish } from "@/stores/fishes";
-import { useSeaCreatureStore, type SeaCreature } from "@/stores/seaCreatures";
+import { useSeaCreaturesStore, type SeaCreature } from "@/stores/seaCreatures";
 
 const modules = [Navigation, Pagination];
 
 const { user } = useUserStore();
 const fishesStore = useFishesStore();
 const insectsStore = useInsectsStore();
+const seaCreaturesStore = useSeaCreaturesStore();
 
 interface Platform {
   name: string;
@@ -179,11 +180,12 @@ let listInsect = ref<Insect[]>([]);
 
 let listFish = ref<Fish[]>([]);
 
-let listCreature = ref<SeaCreature[]>([]);
+let listSeaCreature = ref<SeaCreature[]>([]);
 
 onBeforeMount(async () => {
   listInsect.value = await insectsStore.getInsectsUser();
   listFish.value = await fishesStore.getFishesUser();
+  listSeaCreature.value = await seaCreaturesStore.getSeaCreaturesUser();
 });
 </script>
 
