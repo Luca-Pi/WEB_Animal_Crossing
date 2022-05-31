@@ -7,15 +7,15 @@
       <div class="col flex items-end q-mb-xl">
         <Bubble :txt="character.name">
           <div class="row">
-            <div class="col-4 flex column justify-center q-px-xs">
+            <div class="col-12 col-lg-4 flex column justify-center q-px-xs">
               <p class="text-bold tag">Date d'anniversaire : </p>
               <p class="info text-center">{{ character?.birthday_day }} {{ character?.birthday_month }}</p>
             </div>
-            <div class="col-4 flex justify-center column q-px-xs">
+            <div class="col-12 col-lg-4 flex justify-center column q-px-xs">
               <p class="text-bold tag">Genre : </p>
               <p class="info text-center">{{ character?.gender?.name }}</p>
             </div>
-            <div class="col-4 flex column justify-center q-px-xs">
+            <div class="col-12 col-lg-4 flex column justify-center q-px-xs">
               <q-img :src="character?.iconImage" />
             </div>
           </div>

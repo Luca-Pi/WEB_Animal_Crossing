@@ -8,11 +8,11 @@
       <div class="col flex items-end q-mb-xl">
         <Bubble :txt="music.name">
           <div class="row">
-            <div class="col-4 q-px-xs">
+            <div class="col-12 col-lg-4 q-px-xs">
               <p class="text-bold tag">Prix d'achat :</p>
               <p class="info text-center">{{ music?.price }}</p>
             </div>
-            <div class="col-4 q-px-xs">
+            <div class="col-12 col-lg-4 q-px-xs">
               <p class="text-bold tag">Prix de vente :</p>
               <p class="info text-center">{{ music?.sell_price }} clochettes</p>
             </div>
