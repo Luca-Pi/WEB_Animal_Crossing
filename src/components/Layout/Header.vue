@@ -53,7 +53,7 @@
             text-color="white"
             @click="logout()"
             label="Deconnexion  "
-            
+
           />
         </q-item>
       </q-list>
@@ -66,7 +66,7 @@
       referrerpolicy="no-referrer"
     />
   </q-header>
-  
+
 </template>
 
 <script lang="ts" setup>
