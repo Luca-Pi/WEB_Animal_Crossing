@@ -12,7 +12,7 @@
 .label{
     background-color: #E86E88;
     position: absolute;
-    top: -15px;
+    top: -15%;
     left: -35px;
     transform: rotate(-20deg);
     color: white;
@@ -37,7 +37,16 @@ svg{
         min-height: 383px;
     }
     .label{
-        top: -2%;
+        top: 14%;
+        left: -10px;
+        font-size: 1.3rem;
+        padding:10px 25px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .label{
+        top: 8%;
         left: -10px;
         font-size: 1.3rem;
         padding:10px 25px;
