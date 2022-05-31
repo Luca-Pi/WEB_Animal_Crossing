@@ -8,11 +8,8 @@ import router from "@/router";
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
   if (to.meta.requiresAuth && userStore.getToken === undefined) return '/login'
-
   if (!to.matched.length) {
-    next('/404');
-  } else {
-    next()
+    return "/404"
   }
 })
 

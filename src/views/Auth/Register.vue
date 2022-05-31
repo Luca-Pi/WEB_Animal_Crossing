@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="row justify-center items-center form--container">
+    <div class="row justify-center q-pt-xl form--container">
       <q-form @submit="register" class="q-gutter-md">
         <Bubble txt="Inscription">
           <q-input
@@ -44,7 +44,7 @@
             </template>
           </q-input>
         </Bubble>
-        <div class="text-center">
+        <div class="text-center q-mt-xl">
           <q-btn
             type="submit"
             label="Confirmer"

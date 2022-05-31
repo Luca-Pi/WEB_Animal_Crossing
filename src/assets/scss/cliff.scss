@@ -14,7 +14,7 @@
     position: absolute!important;
     left: -50%;
     bottom:90%;
-    z-index: 99;
+    z-index: 1;
     max-height: 55vh;
 }
 .link--container{
@@ -26,6 +26,7 @@
     justify-content: center;
     gap: 20px;
     a{
+        width: fit-content;
         color: white;
     }
 }
