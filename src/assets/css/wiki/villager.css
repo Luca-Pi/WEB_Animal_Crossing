@@ -26,12 +26,7 @@
 	width: 50%;
 }
 
-.villager-image {
-	max-height: 250px;
-	position: absolute;
-	bottom: -5%;
-	z-index: 2;
-}
+
 
 .villager-image-species {
 	max-height: 100px;
