@@ -8,10 +8,6 @@
         <Bubble :txt="character.name">
           <div class="row">
             <div class="col-4 q-px-xs">
-              <p class="text-bold tag">Espèce : </p>
-              <p class="info text-center">{{ character?.species?.name }}</p>
-            </div>
-            <div class="col-4 q-px-xs">
               <p class="text-bold tag">Date d'anniversaire : </p>
               <p class="info text-center">{{ character.birthday_day }} {{ character.birthday_month }}</p>
             </div>
