@@ -1,6 +1,6 @@
 <template>
   <div class="bubble--bg">
-    <span class="label">{{txt}}</span>
+    <span v-if="txt" class="label">{{txt}}</span>
     <div>
       <slot></slot>
     </div>
