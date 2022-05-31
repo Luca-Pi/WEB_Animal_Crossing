@@ -2,15 +2,14 @@
   <q-page v-if="fossil">
     <div class="row q-mt-xl">
       <div class="col flex items-end">
-        <q-img :src="music.image_url" class="detail-image" fit="contain" />
-        <audio class="audiofile" controls :src="music?.music_url" />
+        <q-img :src="fossil?.image_url" class="detail-image" fit="contain" />
       </div>
       <div class="col flex items-end q-mb-xl">
-        <Bubble :txt="fossil.name">
+        <Bubble :txt="fossil?.name">
           <div class="row">
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Prix de vente :</p>
-              <p class="info text-center">{{ fossil.price }} clochettes</p>
+              <p class="info text-center">{{ fossil?.price }} clochettes</p>
             </div>
           </div>
         </Bubble>

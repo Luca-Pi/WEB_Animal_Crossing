@@ -2,30 +2,30 @@
   <q-page class="text-center" v-if="fish">
     <div class="row q-mt-xl">
       <div class="col flex items-end">
-        <q-img :src="fish.image_url" class="detail-image" fit="contain" />
+        <q-img :src="fish?.image_url" class="detail-image" fit="contain" />
       </div>
       <div class="col flex items-end q-mb-xl">
-        <Bubble :txt="fish.name">
+        <Bubble :txt="fish?.name">
           <div class="row">
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Lieu de capture :</p>
-              <p class="info text-center">{{ fish.place }}</p>
+              <p class="info text-center">{{ fish?.place }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Période de capture :</p>
-              <p class="info text-center">{{ fish.period }}</p>
+              <p class="info text-center">{{ fish?.period }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Heures de capture :</p>
-              <p class="info text-center">{{ fish.hours }}</p>
+              <p class="info text-center">{{ fish?.hours }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Taille du poisson :</p>
-              <p class="info text-center">{{ fish.size }}</p>
+              <p class="info text-center">{{ fish?.size }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Prix de vente :</p>
-              <p class="info text-center">{{ fish.price }} clochettes</p>
+              <p class="info text-center">{{ fish?.price }} clochettes</p>
             </div>
           </div>
         </Bubble>
