@@ -25,6 +25,9 @@ export interface Villager {
   gender?: {
     name?: string;
   };
+  sign?:{
+    name?:string
+  }
   species?: {
     name?: string;
   };

@@ -2,22 +2,22 @@
   <q-page v-if="insect">
     <div class="row q-mt-xl">
       <div class="col flex items-end">
-        <q-img :src="insect.image_url" class="detail-image" fit="contain" />
+        <q-img :src="insect?.image_url" class="detail-image" fit="contain" />
       </div>
       <div class="col flex items-end q-mb-xl">
-        <Bubble :txt="insect.name">
+        <Bubble :txt="insect?.name">
           <div class="row">
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Phrase lors de la capture :</p>
-              <p class="info text-center">{{ insect.catchphrase }}</p>
+              <p class="info text-center">{{ insect?.catchphrase }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Lieu(x) pour l'attraper :</p>
-              <p class="info text-center">{{ insect.location }}</p>
+              <p class="info text-center">{{ insect?.location }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Prix de vente :</p>
-              <p class="info text-center">{{ insect.sell_nook }}clochettes</p>
+              <p class="info text-center">{{ insect?.sell_nook }}clochettes</p>
             </div>
           </div>
         </Bubble>

@@ -2,13 +2,13 @@
   <q-page  v-if="villager">
     <div class="row q-mt-xl">
       <div class="col flex items-end">
-        <q-img :src="villager.image_url" class="detail-image" fit="contain" />
+        <q-img :src="villager?.image_url" class="detail-image" fit="contain" />
       </div>
       <div class="col flex items-end q-mb-xl">
-        <Bubble :txt="villager.name">
+        <Bubble :txt="villager?.name">
           <div class="row">
             <div class="col-4 q-px-xs">
-              <p class="text-bold tag">Espèce : </p>
+              <p class="text-bold tag">Espèce :</p>
               <p class="info text-center">{{ villager?.species?.name }}</p>
             </div>
             <div class="col-4 q-px-xs">
@@ -17,15 +17,15 @@
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Date d'anniversaire : </p>
-              <p class="info text-center">{{ villager.birthday_day }} {{ villager.birthday_month }}</p>
+              <p class="info text-center">{{ villager?.birthday_day }} {{ villager?.birthday_month }}</p>
             </div>
             <div class="col-4 q-px-xs">
               <p class="text-bold tag">Signe astrologique : </p>
-              <p class="info text-center">{{ villager.sign_id }}</p>
+              <p class="info text-center">{{ villager?.sign?.name }}</p>
             </div>
             <div class="col-8 q-px-xs">
               <p class="text-bold tag">Phrase : </p>
-              <p class="info">{{ villager.phrase }}</p>
+              <p class="info">{{ villager?.phrase }}</p>
             </div>
           </div>
         </Bubble>

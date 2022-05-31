@@ -2,30 +2,30 @@
   <q-page v-if="seaCreature">
     <div class="row q-mt-xl">
         <div class="col flex items-end">
-          <q-img :src="seaCreature.image_url" class="detail-image" fit="contain" />
+          <q-img :src="seaCreature?.image_url" class="detail-image" fit="contain" />
         </div>
         <div class="col flex items-end q-mb-xl">
-          <Bubble :txt="seaCreature.name">
+          <Bubble :txt="seaCreature?.name">
             <div class="row">
               <div class="col-4 q-px-xs">
                 <p class="text-bold tag">Période :</p>
-                <p class="info text-center">{{ seaCreature.period }}</p>
+                <p class="info text-center">{{ seaCreature?.period }}</p>
               </div>
               <div class="col-4 q-px-xs">
                 <p class="text-bold tag">Heures :</p>
-                <p class="info text-center">{{ seaCreature.hours }}</p>
+                <p class="info text-center">{{ seaCreature?.hours }}</p>
               </div>
               <div class="col-4 q-px-xs">
                 <p class="text-bold tag">Lieu :</p>
-                <p class="info text-center">{{ seaCreature.place }}</p>
+                <p class="info text-center">{{ seaCreature?.place }}</p>
               </div>
               <div class="col-4 q-px-xs">
                 <p class="text-bold tag">Mouvement :</p>
-                <p class="info text-center">{{ seaCreature.movement }}</p>
+                <p class="info text-center">{{ seaCreature?.movement }}</p>
               </div>
               <div class="col-4 q-px-xs">
                 <p class="text-bold tag">Prix de vente :</p>
-                <p class="info text-center">{{ seaCreature.price }} clochettes</p>
+                <p class="info text-center">{{ seaCreature?.price }} clochettes</p>
               </div>
             </div>
           </Bubble>
