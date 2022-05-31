@@ -1,26 +1,26 @@
 <template>
   <q-page v-if="music">
-  <div class="row q-mt-xl">
-        <div class="col flex items-end">
-          <q-img :src="music.image_url" class="detail-image" fit="contain" />
-          <audio class="audiofile" controls :src="music?.music_url" />
-        </div>
-        <div class="col flex items-end q-mb-xl">
-          <Bubble :txt="music.name">
-            <div class="row">
-              <div class="col-4 q-px-xs">
-                <p class="text-bold tag">Prix d'achat :</p>
-                <p class="info text-center">{{ music.price }}</p>
-              </div>
-              <div class="col-4 q-px-xs">
-                <p class="text-bold tag">Prix de vente :</p>
-                <p class="info text-center">{{ music.sell_price }} clochettes</p>
-              </div>
-            </div>
-          </Bubble>
-        </div>
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="music.image_url" class="detail-image" fit="contain" />
+        <audio class="audiofile" controls :src="music?.music_url" />
       </div>
-      <Cliff />    
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="music.name">
+          <div class="row">
+            <div class="col-4 q-px-xs">
+              <p class="text-bold tag">Prix d'achat :</p>
+              <p class="info text-center">{{ music.price }}</p>
+            </div>
+            <div class="col-4 q-px-xs">
+              <p class="text-bold tag">Prix de vente :</p>
+              <p class="info text-center">{{ music.sell_price }} clochettes</p>
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />    
   </q-page>
 </template>
 
