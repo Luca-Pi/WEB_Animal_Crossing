@@ -46,8 +46,8 @@ svg{
 
 @media (min-width: 1200px) {
     .label{
-        top: 8%;
-        left: -10px;
+        top: 1%;
+        left: -1%;
         font-size: 1.3rem;
         padding:10px 25px;
     }

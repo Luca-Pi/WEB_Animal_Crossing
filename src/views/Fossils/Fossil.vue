@@ -1,10 +1,22 @@
 <template>
-  <q-page padding class="text-center" v-if="fossil">
-    <h1>Fossile : {{ fossil.name }}</h1>
-
-    <section id="section-fossil-detail">
-      Prix de vente : {{ fossil.price }} clochettes
-    </section>
+  <q-page v-if="fossil">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="music.image_url" class="detail-image" fit="contain" />
+        <audio class="audiofile" controls :src="music?.music_url" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="fossil.name">
+          <div class="row">
+            <div class="col-4 q-px-xs">
+              <p class="text-bold tag">Prix de vente :</p>
+              <p class="info text-center">{{ fossil.price }} clochettes</p>
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />
   </q-page>
 </template>
 
@@ -14,6 +26,8 @@ import { useRoute } from "vue-router";
 
 import { useQuasar } from "quasar";
 import { useFossilsStore, type Fossil } from "@/stores/fossils";
+import Cliff from "@/components/Cliff.vue";
+import Bubble from "@/components/Bubble.vue";
 
 const route = useRoute();
 
