@@ -1,38 +1,38 @@
 <template>
-  <q-page padding class="text-center">
-    <q-card>
-      <q-card-section>
+  <q-page class="text-center">
+    <section class="listing-bulle-header">
+      <Bubble>
         <h2>Les musiques des Jeux Animal Crossing</h2>
-      </q-card-section>
-      <q-card-section>
         <p>
           Cette catégorie regroupe tous les musiques présentes dans les
           différents jeux animal crossing.
         </p>
-      </q-card-section>
-    </q-card>
-
-    <section id="section-list" class="section-list-villagers">
-      <MusicCard
-        v-for="music in musicsFiltered"
-        :key="music.id"
-        :id="music.id"
-        :name="music.name"
-        :image="music.image_url"
-      />
+      </Bubble>
     </section>
 
-    <div class="q-pa-lg flex flex-center">
-      <q-pagination
-        v-if="musics.length > maxItemsPerPage"
-        v-model="currentPage"
-        color="#000"
-        active-text-color="#000"
-        active-color="secondary"
-        :max="Math.ceil(musics.length/maxItemsPerPage)"
-        :max-pages="10"
-      />
-    </div>
+    <Cliff>
+      <section id="section-list" class="section-list-villagers">
+        <MusicCard
+          v-for="music in musicsFiltered"
+          :key="music.id"
+          :id="music.id"
+          :name="music.name"
+          :image="music.image_url"
+        />
+      </section>
+
+      <div class="q-pa-lg flex flex-center">
+        <q-pagination
+          v-if="musics.length > maxItemsPerPage"
+          v-model="currentPage"
+          color="#000"
+          active-text-color="#000"
+          active-color="secondary"
+          :max="Math.ceil(musics.length/maxItemsPerPage)"
+          :max-pages="10"
+        />
+      </div>
+    </Cliff>
   </q-page>
 </template>
 
@@ -40,6 +40,8 @@
 import { onBeforeMount, ref, computed } from "vue";
 
 import MusicCard from "@/components/Cards/Music.vue";
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 import { useQuasar } from "quasar";
 import { useMusicsStore, type Music } from "@/stores/musics";
