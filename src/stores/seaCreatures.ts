@@ -15,7 +15,7 @@ export interface SeaCreature {
 }
 
 export const useSeaCreaturesStore = defineStore("seaCreaturesStore", () => {
-  const { getToken } = useUserStore();
+  const { getToken, getUserId } = useUserStore();
 
   function getSeaCreatures(): Promise<SeaCreature[]> {
     return new Promise(async (resolve, reject) => {
@@ -37,5 +37,41 @@ export const useSeaCreaturesStore = defineStore("seaCreaturesStore", () => {
     });
   }
 
-  return { getSeaCreatures, getSeaCreature };
+  function getSeaCreaturesUser(): Promise<SeaCreature[]> {
+    return new Promise(async (resolve, reject) => {
+      const seaCreatures = (
+        await http.get(
+          `/api/user-sea-creatures?api_token=${getToken}&user_id=${getUserId}`
+        )
+      ).data;
+
+      return resolve(seaCreatures);
+    });
+  }
+
+  function addSeaCreatureInCollection(idSeaCreature: number): Promise<SeaCreature> {
+    return new Promise(async (resolve, reject) => {
+      const seaCreature = (
+        await http.post(
+          `/api/has-sea-creature-user?api_token=${getToken}&user_id=${getUserId}&sea_creature_id=${idSeaCreature}`
+        )
+      ).data;
+
+      return resolve(seaCreature);
+    });
+  }
+
+  function removeSeaCreatureFromCollection(idSeaCreature: number): Promise<SeaCreature> {
+    return new Promise(async (resolve, reject) => {
+      const seaCreature = (
+        await http.delete(
+          `/api/has-sea-creature-user-remove?api_token=${getToken}&user_id=${getUserId}&sea_creature_id=${idSeaCreature}`
+        )
+      ).data;
+
+      return resolve(seaCreature);
+    });
+  }
+
+  return { getSeaCreatures, getSeaCreature, getSeaCreaturesUser, addSeaCreatureInCollection, removeSeaCreatureFromCollection };
 });

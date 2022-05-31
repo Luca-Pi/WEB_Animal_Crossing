@@ -22,6 +22,8 @@
         :id="seaCreature.id"
         :name="seaCreature.name"
         :image="seaCreature.image_url"
+        :show-item-collection="true"
+        :has-sea-creature="seaCreature.hasSeaCreature"
       />
     </section>
 

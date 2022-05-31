@@ -10,6 +10,26 @@
 	background-image: url('/images/patterns/deep_water.jpg');
 }
 
+.sea-creature-leaf {
+	position: absolute;
+	background-image: url('/images/leaf.png');
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+	background-color: #fff;
+	padding: 5px;
+	bottom: 3px;
+	right: 3px;
+	width: 30px;
+	height:30px;
+	border: 5px solid #fff;
+	border-radius: 50%;
+}
+
+.sea-creature-not-in-collection {
+	filter: grayscale(1);
+}
+
 .sea-creature-image {
 	max-height: 100px;
 }
