@@ -1,12 +1,12 @@
 <template>
   <q-page>
-    <div class="row justify-center items-center form--container">
+    <div class="row justify-center q-pt-xl form--container">
       <q-form @submit="login" class="q-gutter-md">
         <Bubble txt="Connexion">
           <q-input
             v-model="form.email"
             type="email"
-            label="Nom d'utilisateur"
+            label="Email"
             :rules="[val => !!val || 'Le champ email est requis']"
           />
           <q-input
@@ -24,7 +24,7 @@
             </template>
           </q-input>
         </Bubble>
-        <div class="text-center">
+        <div class="text-center q-mt-xl">
           <q-btn
             type="submit"
             label="Confirmer"

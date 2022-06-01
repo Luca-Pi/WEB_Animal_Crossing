@@ -1,22 +1,29 @@
 <template>
-  <q-page padding class="text-center" v-if="insect">
-    <h1>Insecte : {{ insect.name }}</h1>
-
-    <section id="section-insect-detail">
-      <q-img class="insect-image" :src="insect.image_url" fit="scale-down" />
-    </section>
-    <p>
-      <span class="test-bold">Phrase lors de la capture :</span>
-      {{ insect.catchphrase }}
-    </p>
-    <p>
-      <span class="test-bold">Lieu(x) pour l'attraper :</span>
-      {{ insect.location }}
-    </p>
-    <p>
-      <span class="test-bold">Prix de vente :</span>
-      {{ insect.sell_nook }} clochettes
-    </p>
+  <q-page v-if="insect">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="insect?.image_url" class="detail-image" fit="contain" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="insect?.name">
+          <div class="row">
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Phrase lors de la capture :</p>
+              <p class="info text-center">{{ insect?.catchphrase }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Lieu(x) pour l'attraper :</p>
+              <p class="info text-center">{{ insect?.location }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Prix de vente :</p>
+              <p class="info text-center">{{ insect?.sell_nook }}clochettes</p>
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />   
   </q-page>
 </template>
 
@@ -26,6 +33,9 @@ import { useRoute } from "vue-router";
 
 import { useQuasar } from "quasar";
 import { useInsectsStore, type Insect } from "@/stores/insects";
+
+import Cliff from "@/components/Cliff.vue";
+import Bubble from "@/components/Bubble.vue";
 
 const route = useRoute();
 

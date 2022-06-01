@@ -1,21 +1,37 @@
 <template>
-  <q-page padding class="text-center" v-if="fish">
-    <h1>Poisson : {{ fish.name }}</h1>
-
-    <section id="section-fish-detail">
-      <q-img class="fish-image" :src="fish.image_url" fit="scale-down" />
-
-      <p><span class="text-bold">Lieu de capture :</span> {{ fish.place }}</p>
-      <p>
-        <span class="text-bold">Période de capture :</span> {{ fish.period }}
-      </p>
-      <p><span class="text-bold">Heures de capture :</span> {{ fish.hours }}</p>
-      <p><span class="text-bold">Taille du poisson :</span> {{ fish.size }}</p>
-      <p>
-        <span class="text-bold">Prix de vente :</span>
-        {{ fish.price }} clochettes
-      </p>
-    </section>
+  <q-page class="text-center" v-if="fish">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="fish?.image_url" class="detail-image" fit="contain" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="fish?.name">
+          <div class="row">
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Lieu de capture :</p>
+              <p class="info text-center">{{ fish?.place }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Période de capture :</p>
+              <p class="info text-center">{{ fish?.period }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Heures de capture :</p>
+              <p class="info text-center">{{ fish?.hours }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Taille du poisson :</p>
+              <p class="info text-center">{{ fish?.size }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Prix de vente :</p>
+              <p class="info text-center">{{ fish?.price }} clochettes</p>
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />
   </q-page>
 </template>
 
@@ -26,6 +42,8 @@ import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFishesStore, type Fish } from "@/stores/fishes";
 
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 const route = useRoute();
 
 const $q = useQuasar();

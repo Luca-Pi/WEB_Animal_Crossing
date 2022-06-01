@@ -1,41 +1,28 @@
 <template>
-  <q-page padding class="text-center" v-if="character">
-    <h1>{{ character.name }}</h1>
-
-    <section id="section-character-detail">
-      <section id="section-character-informations">
-        <div id="character-detail-image">
-          <q-img
-            id="character-image"
-            :src="character.photoImage"
-            fit="scale-down"
-          />
-        </div>
-        <table>
-          <tbody>
-            <tr>
-              <td class="character-label text-uppercase text-bold">Nom</td>
-              <td>{{ character.name }}</td>
-            </tr>
-            <tr v-if="character.species">
-              <td class="character-label text-uppercase text-bold">Espèce</td>
-              <td>{{ character.species.name }}</td>
-            </tr>
-            <tr>
-              <td class="character-label text-uppercase text-bold">
-                Date d'anniversaire
-              </td>
-              <td>
-                {{ character.birthday_day }} {{ character.birthday_month }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <section id="section-character-description">
-        <p>{{ character.description }}</p>
-      </section>
-    </section>
+  <q-page v-if="character">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="character.photoImage" class="detail-image" fit="contain" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="character.name">
+          <div class="row">
+            <div class="col-12 col-lg-4 flex column justify-center q-px-xs">
+              <p class="text-bold tag">Date d'anniversaire : </p>
+              <p class="info text-center">{{ character?.birthday_day }} {{ character?.birthday_month }}</p>
+            </div>
+            <div class="col-12 col-lg-4 flex justify-center column q-px-xs">
+              <p class="text-bold tag">Genre : </p>
+              <p class="info text-center">{{ character?.gender?.name }}</p>
+            </div>
+            <div class="col-12 col-lg-4 flex column justify-center q-px-xs">
+              <q-img :src="character?.iconImage" />
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />
   </q-page>
 </template>
 
@@ -45,6 +32,8 @@ import { useRoute } from "vue-router";
 
 import { useQuasar } from "quasar";
 import { useCharactersStore, type Character } from "@/stores/characters";
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 const route = useRoute();
 

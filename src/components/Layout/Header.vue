@@ -22,24 +22,41 @@
           </div>
         </RouterLink>
       </div>
-
-      <div class="col text-center" >
-        <span
-          class="text-h5"
-          style="font-size: medium;margin: 2.5%;"
-          >Profil</span
+      <q-list class="row text-center col" v-if="userStore.user.id">
+        <q-item
+          dense
+          class="text-white "
+          style="margin-left: 5%; margin-right: 5%"
+          :to="{ name: 'profile' }"
+          >Profile</q-item
         >
-        <span
-          class="text-h5"
-          style="font-size: medium; margin: 2.5%;"
-          >Catégorie</span
+        <q-item
+          dense
+          class="text-white "
+          style="margin-left: 5%; margin-right: 2.5%"
+          :to="{ name: 'home' }+'/#section-menu-wiki'"
+          >Catégorie   </q-item
         >
-        <span
-          class="text-h5"
-          style="font-size: medium;margin: 2.5%;"
-          >Anniversaire</span
+        <q-item
+          dense
+          style="margin-left: 2.5%; margin-right: 2.5%"
+          v-if="$router.currentRoute.value.name !== 'home'"
+          class="text-white "
+          :to="{ name: 'home' } + '/#section-happy-birthday'"
         >
-      </div>
+          Anniversaire
+        </q-item>
+        <q-item dense class="col" >
+          <q-btn
+            size="xs"
+            color="red"
+            text-color="white"
+            @click="logout()"
+            label="Deconnexion  "
+            
+          />
+        </q-item>
+      </q-list>
     </q-toolbar>
     <link
       rel="stylesheet"
@@ -49,9 +66,39 @@
       referrerpolicy="no-referrer"
     />
   </q-header>
+  
 </template>
 
+<script lang="ts" setup>
+import { ref } from "vue";
+import router from "@/router";
+import { RouterLink } from "vue-router";
 
+import { useQuasar } from "quasar";
+import { useUserStore } from "@/stores/user";
+
+const $q = useQuasar();
+const userStore = useUserStore();
+
+const audio_playing = ref(false);
+
+async function logout() {
+  try {
+    $q.notify({
+      message: `À très bientôt ${userStore.user.username} !`,
+      type: "positive",
+    });
+
+    await userStore.logout();
+    router.push({ name: "login" });
+  } catch (error: any) {
+    $q.notify({
+      message: error || "Une erreur est survenu lors de la déconnexion.",
+      type: "negative",
+    });
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .q-header {

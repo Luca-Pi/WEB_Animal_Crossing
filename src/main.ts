@@ -7,13 +7,11 @@ import { useUserStore } from "@/stores/user";
 import router from "@/router";
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-  if (to.meta.requiresAuth && userStore.getToken === undefined) return '/login'
-
+  if (to.meta.requiresAuth && userStore.getToken === undefined) return next('/login')
   if (!to.matched.length) {
-    next('/404');
-  } else {
-    next()
+    return next("/404")
   }
+  next()
 })
 
 import { Quasar, Notify } from "quasar";
