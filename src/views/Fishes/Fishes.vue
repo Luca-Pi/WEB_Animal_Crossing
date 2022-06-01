@@ -28,13 +28,27 @@
         @update:model-value="filtersFishes()"
         clearable
       />
-      <q-toggle
-        v-model="filters.hasFish"
-        label="Est dans ma collection"
-        class="field"
-        emit-value
-        @update:model-value="filtersFishes()"
-        clearable
+
+      <q-select
+          v-model="filters.period"
+          label="Période de capture"
+          :options="periods"
+          class="field"
+          emit-value
+          @update:model-value="filtersFishes()"
+          clearable
+      />
+
+      <q-btn-toggle
+          v-model="filters.hasFish"
+          toggle-color="secondary"
+          :options="[
+            {label: 'Les deux', value: null},
+            {label: 'Pas dans ma collection', value: false},
+            {label: 'Dans ma collection', value: true}
+          ]"
+          emit-value
+          @update:model-value="filtersFishes()"
       />
     </q-card-section>
 
@@ -82,8 +96,25 @@ const maxItemsPerPage = ref(21);
 
 const filters = reactive({
   name: "",
-  hasFish: "",
+  hasFish: null,
+  period: "",
 });
+
+const periods = reactive([
+    'Toute l\'année',
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+]);
 
 const fishesFiltered = computed(() => {
   return fishes.value.slice(
@@ -95,7 +126,6 @@ const fishesFiltered = computed(() => {
 onBeforeMount(async () => {
   try {
     fishes.value = await fishesStore.getFishes();
-    console.log((fishes.value))
   } catch (error) {
     $q.notify({
       message: "Une erreur est survenu. Veuillez conctacter un administrateur.",
@@ -109,9 +139,10 @@ async function filtersFishes() {
     "&name=" +
     (filters.name || "") +
     "&hasFish=" +
-    (filters.hasFish || "")
+    (filters.hasFish || "") +
+    "&period=" +
+    (filters.period || "")
   fishes.value = await fishesStore.getFishesFiltered(query);
-  console.log(fishes.value)
 }
 </script>
 
