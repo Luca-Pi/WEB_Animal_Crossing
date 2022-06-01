@@ -15,6 +15,43 @@
     </section>
 
     <Cliff>
+      <section id="section-filters">
+        <q-select
+            v-model="filters.name"
+            label="Nom du poisson"
+            :options="fishes"
+            class="field"
+            option-value="name"
+            emit-value
+            option-label="name"
+            @update:model-value="filtersFishes()"
+            clearable
+        />
+
+        <q-select
+            v-model="filters.period"
+            label="Période de capture"
+            :options="periods"
+            class="field"
+            emit-value
+            @update:model-value="filtersFishes()"
+            clearable
+        />
+
+        <q-btn-toggle
+            class="q-mt-lg"
+            v-model="filters.hasFish"
+            toggle-color="primary"
+            :options="[
+            {label: 'Les deux', value: null},
+            {label: 'Pas dans ma collection', value: 'false'},
+            {label: 'Dans ma collection', value: true}
+          ]"
+            emit-value
+            @update:model-value="filtersFishes()"
+        />
+      </section>
+
       <section id="section-list">
         <FishCard
           v-for="fish in fishesFiltered"
@@ -43,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, computed } from "vue";
+import { onBeforeMount, reactive, ref, computed } from "vue";
 
 import FishCard from "@/components/Cards/Fish.vue";
 import Bubble from "@/components/Bubble.vue";
@@ -59,6 +96,28 @@ const fishes = ref<Fish[]>([]);
 
 const currentPage = ref(1);
 const maxItemsPerPage = ref(21);
+
+const filters = reactive({
+  name: "",
+  hasFish: null,
+  period: "",
+});
+
+const periods = reactive([
+    'Toute l\'année',
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+]);
 
 const fishesFiltered = computed(() => {
   return fishes.value.slice(
@@ -77,6 +136,17 @@ onBeforeMount(async () => {
     });
   }
 });
+
+async function filtersFishes() {
+  let query =
+    "&name=" +
+    (filters.name || "") +
+    "&hasFish=" +
+    (filters.hasFish || "") +
+    "&period=" +
+    (filters.period || "")
+  fishes.value = await fishesStore.getFishesFiltered(query);
+}
 </script>
 
 <style scoped>
