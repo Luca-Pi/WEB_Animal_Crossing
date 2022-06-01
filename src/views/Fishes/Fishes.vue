@@ -126,7 +126,6 @@ const fishesFiltered = computed(() => {
 onBeforeMount(async () => {
   try {
     fishes.value = await fishesStore.getFishes();
-    console.log((fishes.value))
   } catch (error) {
     $q.notify({
       message: "Une erreur est survenu. Veuillez conctacter un administrateur.",
@@ -136,7 +135,6 @@ onBeforeMount(async () => {
 });
 
 async function filtersFishes() {
-  console.log(filters)
   let query =
     "&name=" +
     (filters.name || "") +
