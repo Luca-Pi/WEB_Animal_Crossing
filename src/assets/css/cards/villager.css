@@ -1,18 +1,19 @@
 .villager {
-	width: 26%;
-	border-radius: 50px 50px 0 0;
-	overflow: hidden;
-	padding-bottom: 50px;
+	width: 17%;
+	border-radius: 50px;
 	cursor: pointer;
+	margin: 50px 0;
 }
 
 .villager-section-image {
-	background-image: url('/images/patterns/dots.png');
-	padding: 20px;
+	padding: 5px 15px;
+	height: 100px;
 }
 
 .villager-image {
-	max-height: 250px;
+	max-height: 150px;
+	position: relative;
+	top: -50px;
 }
 
 .villager-name > span {

@@ -4,7 +4,7 @@
       <q-img :src="image" class="fossil-image" fit="scale-down" />
     </div>
     <div class="fossil-name">
-      <span class="text-white">{{ name }}</span>
+      <span>{{ name }}</span>
     </div>
   </div>
 </template>

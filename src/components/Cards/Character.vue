@@ -4,7 +4,7 @@
       <q-img :src="image" class="character-image" fit="scale-down" />
     </div>
     <div class="character-name">
-      <span class="text-white">{{ name }}</span>
+      <span>{{ name }}</span>
     </div>
   </div>
 </template>

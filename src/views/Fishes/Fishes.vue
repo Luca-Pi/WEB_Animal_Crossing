@@ -1,10 +1,8 @@
 <template>
-  <q-page padding class="text-center">
-    <q-card>
-      <q-card-section>
+  <q-page class="text-center">
+    <section class="listing-bulle-header">
+      <Bubble>
         <h2>Les poissons des Jeux Animal Crossing</h2>
-      </q-card-section>
-      <q-card-section>
         <p>
           Parmi les principales activités à réaliser dans Animal Crossing New
           Horizons, la pèche est indéniablement l’un des gros morceaux. On pèche
@@ -13,32 +11,34 @@
           à pèche. Loin d’être une simple composante, la pèche est une activité
           majeure.
         </p>
-      </q-card-section>
-    </q-card>
-
-    <section id="section-list">
-      <FishCard
-        v-for="fish in fishesFiltered"
-        :key="fish.id"
-        :id="fish.id"
-        :name="fish.name"
-        :image="fish.image_url"
-        :has-fish="fish.hasFish"
-        :show-item-collection="true"
-      />
+      </Bubble>
     </section>
 
-    <div class="q-pa-lg flex flex-center">
-      <q-pagination
-        v-if="fishes.length > maxItemsPerPage"
-        v-model="currentPage"
-        color="#000"
-        active-text-color="#000"
-        active-color="secondary"
-        :max="Math.ceil(fishes.length/maxItemsPerPage)"
-        :max-pages="10"
-      />
-    </div>
+    <Cliff>
+      <section id="section-list">
+        <FishCard
+          v-for="fish in fishesFiltered"
+          :key="fish.id"
+          :id="fish.id"
+          :name="fish.name"
+          :image="fish.image_url"
+          :has-fish="fish.hasFish"
+          :show-item-collection="true"
+        />
+      </section>
+
+      <div class="q-pa-lg flex flex-center">
+        <q-pagination
+          v-if="fishes.length > maxItemsPerPage"
+          v-model="currentPage"
+          color="#000"
+          active-text-color="#000"
+          active-color="secondary"
+          :max="Math.ceil(fishes.length/maxItemsPerPage)"
+          :max-pages="10"
+        />
+      </div>
+    </Cliff>
   </q-page>
 </template>
 
@@ -46,6 +46,8 @@
 import { onBeforeMount, ref, computed } from "vue";
 
 import FishCard from "@/components/Cards/Fish.vue";
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 import { useQuasar } from "quasar";
 import { useFishesStore, type Fish } from "@/stores/fishes";
