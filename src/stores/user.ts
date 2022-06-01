@@ -88,6 +88,7 @@ export const useUserStore = defineStore("userStore", () => {
   }
 
   async function logout() {
+    user.value = {}
     return new Promise(async (resolve, reject) => {
       const xsrfToken = (await http.get("/api/token")).data;
 
@@ -98,8 +99,6 @@ export const useUserStore = defineStore("userStore", () => {
           { headers: { "XSRF-TOKEN": xsrfToken } }
         )
       ).data;
-
-      user.value = {};
 
       return resolve(true);
     });
@@ -123,8 +122,6 @@ export const useUserStore = defineStore("userStore", () => {
             headers: { "XSRF-TOKEN": xsrfToken },
           })
       ).data;
-
-      console.log(message)
 
       if (!success) return reject(message);
 
