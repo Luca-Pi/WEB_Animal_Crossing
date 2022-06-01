@@ -26,6 +26,13 @@ interface RegisterForm {
   password_confirmation: string;
 }
 
+interface UpdateForm {
+  username: string;
+  description: string;
+  favoriteSerie: string,
+  platforms?: [] ,
+}
+
 export const useUserStore = defineStore("userStore", () => {
   const user = ref(useLocalStorage<User>("user", {}));
 
@@ -63,6 +70,7 @@ export const useUserStore = defineStore("userStore", () => {
           headers: { "XSRF-TOKEN": xsrfToken },
         })
       ).data;
+      
 
       if (!success) return reject(message);
 
@@ -105,5 +113,35 @@ export const useUserStore = defineStore("userStore", () => {
     return user.value.id;
   });
 
-  return { user, login, register, logout, getToken, getUserId };
+
+  async function update(form: UpdateForm) {
+    return new Promise(async (resolve, reject) => {
+      const xsrfToken = (await http.get("/api/token")).data;
+      const api_token = getToken.value
+      const { success, message } = (
+          await http.put(`/api/update?api_token=${api_token}`,form, {
+            headers: { "XSRF-TOKEN": xsrfToken },
+          })
+      ).data;
+
+      console.log(message)
+
+      if (!success) return reject(message);
+
+      const userInformations = (
+          await http.get(`/api/me?api_token=${api_token}`)
+      ).data;
+
+      user.value = {
+        api_token,
+        ...userInformations,
+      };
+
+      return resolve(true);
+    });
+  }
+
+
+
+  return { user, login, register, logout,update, getToken, getUserId };
 });
