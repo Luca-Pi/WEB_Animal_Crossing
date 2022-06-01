@@ -1,21 +1,26 @@
 <template>
-  <q-page padding class="text-center" v-if="music">
-    <section id="section-music">
-      <section id="section-music-image">
-        <h1>{{ music.name }}</h1>
-        <div id="music-image-and-audio">
-          <q-img :src="music.image_url" class="music-image" fit="cover" />
-          <audio class="audiofile" controls>
-            <source :src="music.music_url" />
-          </audio>
-        </div>
-      </section>
-
-      <section id="music-more-info">
-        <p>Prix d'achat : {{ music.price }} clochettes</p>
-        <p>Prix de vente : {{ music.sell_price }} clochettes</p>
-      </section>
-    </section>
+  <q-page v-if="music">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="music?.image_url" class="detail-image" fit="contain" />
+        <audio class="audiofile" controls :src="music?.music_url" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="music.name">
+          <div class="row">
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Prix d'achat :</p>
+              <p class="info text-center">{{ music?.price }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Prix de vente :</p>
+              <p class="info text-center">{{ music?.sell_price }} clochettes</p>
+            </div>
+          </div>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />    
   </q-page>
 </template>
 
@@ -26,6 +31,8 @@ import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 import { useMusicsStore, type Music } from "@/stores/musics";
 
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 const route = useRoute();
 
 const $q = useQuasar();

@@ -2,6 +2,18 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	max-width: 75%;
+	margin: 0 auto;
+}
+
+.listing-bulle-header {
+	max-width: 75%;
+	margin: 15px auto;
+	padding: 0 8%;
+}
+
+.listing-bulle-header p {
+	margin-top:15px;
 }
 
 #section-filters > .field {

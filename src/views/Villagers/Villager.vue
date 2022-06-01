@@ -1,63 +1,37 @@
 <template>
-  <q-page padding class="text-center" v-if="villager">
-    <h1>Villageois {{ villager.name }}</h1>
-
-    <section id="section-villager-detail">
-      <section id="section-villager-detail-top">
-        <div class="first-section">
-          <div>
-            <q-icon
-              v-if="villager?.gender?.name === 'Mâle'"
-              name="fas fa-mars"
-              color="blue"
-            />
-            <q-icon v-else name="fas fa-venus" color="red" />
+  <q-page  v-if="villager">
+    <div class="row q-mt-xl">
+      <div class="col flex items-end">
+        <q-img :src="villager?.image_url" class="detail-image" fit="contain" />
+      </div>
+      <div class="col flex items-end q-mb-xl">
+        <Bubble :txt="villager?.name">
+          <div class="row">
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Espèce :</p>
+              <p class="info text-center">{{ villager?.species?.name }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Personnalité : </p>
+              <p class="info text-center">{{ villager?.personality?.name }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Date d'anniversaire : </p>
+              <p class="info text-center">{{ villager?.birthday_day }} {{ villager?.birthday_month }}</p>
+            </div>
+            <div class="col-12 col-lg-4 q-px-xs">
+              <p class="text-bold tag">Signe astrologique : </p>
+              <p class="info text-center">{{ villager?.sign?.name }}</p>
+            </div>
+            <div class="col-12 col-lg-8 q-px-xs">
+              <p class="text-bold tag">Phrase : </p>
+              <p class="info">{{ villager?.phrase }}</p>
+            </div>
           </div>
-          <div>
-            <span class="text-bold">Espèce : </span>
-            <span>{{ villager?.species?.name }}</span>
-          </div>
-          <div>
-            <span class="text-bold">Personnalité : </span>
-            <span>{{ villager?.personality?.name }}</span>
-          </div>
-        </div>
-
-        <div class="second-section">
-          <div class="villager-detail-image">
-            <q-img
-              :src="villager.image_url"
-              class="villager-image"
-              fit="scale-down"
-            />
-          </div>
-
-          <span class="text-bold villager-name">{{ villager.name }}</span>
-        </div>
-
-        <div class="third-section">
-          <div>
-            <span class="text-bold">Date d'anniversaire : </span>
-            <span
-              >{{ villager.birthday_day }} {{ villager.birthday_month }}</span
-            >
-          </div>
-          <div>
-            <span class="text-bold">Signe astrologique : </span>
-            <span>{{ villager.sign_id }}</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-villager-detail-bottom">
-        <div>
-          <h2>{{ villager.phrase }}</h2>
-          <!--<div>
-					<q-img :src="villager.house" class="villager-image-house" fit="scale-down"/>
-				</div>-->
-        </div>
-      </section>
-    </section>
+        </Bubble>
+      </div>
+    </div>
+    <Cliff />
   </q-page>
 </template>
 
@@ -67,6 +41,9 @@ import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 import { useVillagersStore, type Villager } from "@/stores/villagers";
+
+import Cliff from "@/components/Cliff.vue";
+import Bubble from "@/components/Bubble.vue";
 
 const route = useRoute();
 const $q = useQuasar();

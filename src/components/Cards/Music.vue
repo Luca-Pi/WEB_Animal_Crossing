@@ -2,7 +2,7 @@
   <div class="music" @click="goToDetailMusic(id)">
     <q-img :src="image" class="music-image" fit="cover" />
     <div class="music-name">
-      <span class="text-white">{{ name }}</span>
+      <span>{{ name }}</span>
     </div>
   </div>
 </template>

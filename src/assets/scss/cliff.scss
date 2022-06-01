@@ -1,0 +1,36 @@
+.land{
+    background-color: $green;
+    min-height: 20vh;
+}
+.cliff{
+    top: -30px;
+    width: 120%!important;
+    left: -10%;
+    overflow: hidden!important;
+}
+
+.cliff--container{
+    position: relative;
+}
+
+.sapin{
+    position: absolute!important;
+    left: -50%;
+    bottom: 90%;
+    z-index: 99;
+    pointer-events: none;
+    max-height: 55vh;
+}
+.link--container{
+    color: white;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    a{
+        width: fit-content;
+        color: white;
+    }
+}

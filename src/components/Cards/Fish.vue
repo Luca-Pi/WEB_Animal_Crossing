@@ -9,7 +9,7 @@
       ></div>
     </div>
     <div class="fish-name">
-      <span class="text-white">{{ name }}</span>
+      <span>{{ name }}</span>
     </div>
   </div>
 </template>

@@ -6,6 +6,7 @@ import { useUserStore } from "@/stores/user";
 export interface Character {
   id?: number;
   name?: string;
+  iconImage?: string;
   photoImage?: string;
   description?: string;
   birthday_day?: number;
@@ -13,6 +14,9 @@ export interface Character {
   species?: {
     name?: string;
   };
+  gender?:{
+    name?:string
+  }
 }
 
 export const useCharactersStore = defineStore("charactersStore", () => {

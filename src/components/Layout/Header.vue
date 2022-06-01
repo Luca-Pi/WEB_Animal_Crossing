@@ -1,66 +1,62 @@
 <template>
-  <q-header class="bg-secondary" elevated reveal>
+  <q-header style="background-color:#9CCFC6;" elevated reveal>
     <q-toolbar class="row full-height">
-      <div class="col-3 text-left">
-        <q-btn :to="{ name: 'blog' }" color="secondary" unelevated>Blog</q-btn>
-      </div>
-
-      <div class="col-6 text-center">
+      <div class="col-5 ">
         <RouterLink to="/" custom v-slot="{ navigate }">
           <div @click="navigate" class="cursor-pointer">
             <q-avatar>
               <img
-                src="https://cdn.pixabay.com/photo/2020/07/27/10/33/animal-crossing-leaf-5442035_1280.png"
+                src="/images/svg/icon.svg"
+                style="
+                  margin-left: 0;
+                  margin-right: 0;
+                  width: 30px;
+                "
               />
             </q-avatar>
-            <span class="text-h5 q-mx-lg">Island Crossing</span>
-            <q-avatar>
-              <img
-                src="https://cdn.pixabay.com/photo/2020/07/27/10/33/animal-crossing-leaf-5442035_1280.png"
-              />
-            </q-avatar>
+            <span
+              class="text-h5"
+              style="font-size: medium; margin-left: 0; margin-right: 0"
+              >Island Crossing</span
+            >
           </div>
         </RouterLink>
       </div>
+      <q-list class="row text-center col" v-if="userStore.user.id">
+        <q-item
+          dense
+          class="text-white "
+          style="margin-left: 5%; margin-right: 5%"
+          :to="{ name: 'profile' }"
+          >Profile</q-item
+        >
+        <q-item
+          dense
+          class="text-white "
+          style="margin-left: 5%; margin-right: 2.5%"
+          :to="{ name: 'home' }+'/#section-menu-wiki'"
+          >Catégorie   </q-item
+        >
+        <q-item
+          dense
+          style="margin-left: 2.5%; margin-right: 2.5%"
+          v-if="$router.currentRoute.value.name !== 'home'"
+          class="text-white "
+          :to="{ name: 'home' } + '/#section-happy-birthday'"
+        >
+          Anniversaire
+        </q-item>
+        <q-item dense class="col" >
+          <q-btn
+            size="xs"
+            color="red"
+            text-color="white"
+            @click="logout()"
+            label="Deconnexion  "
 
-      <div class="col-3 text-right">
-        <audio src="../src/assets/audios/theme.mp3" loop></audio>
-        <q-btn
-          @click="toggleAudio()"
-          icon="fab fa-soundcloud"
-          :class="audio_playing ? 'icon-sound' : 'icon-sound icon-sound-mute'"
-          round
-          flat
-        />
-        <template v-if="userStore.user.id">
-          <q-btn-dropdown
-            :label="userStore.user.username"
-            color="secondary"
-            unelevated
-          >
-            <q-list>
-              <q-item :to="{ name: 'profile' }" clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Mon profil</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item @click="logout" clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Déconnexion</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-        </template>
-        <template v-else>
-          <q-btn :to="{ name: 'login' }" color="secondary" unelevated
-            >Connexion</q-btn
-          >
-          <q-btn :to="{ name: 'register' }" color="secondary" unelevated
-            >Inscription</q-btn
-          >
-        </template>
-      </div>
+          />
+        </q-item>
+      </q-list>
     </q-toolbar>
     <link
       rel="stylesheet"
@@ -70,9 +66,10 @@
       referrerpolicy="no-referrer"
     />
   </q-header>
+
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from "vue";
 import router from "@/router";
 import { RouterLink } from "vue-router";
@@ -100,16 +97,6 @@ async function logout() {
       type: "negative",
     });
   }
-}
-
-function toggleAudio() {
-  const audio = document.getElementsByTagName("audio")[0];
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-  audio_playing.value = !audio.paused;
 }
 </script>
 

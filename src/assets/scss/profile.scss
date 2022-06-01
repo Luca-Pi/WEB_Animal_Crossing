@@ -67,16 +67,16 @@ main {
   top: 37%;
 }
 
-@media screen and (min-width: 992px) {
-  .col-4 {
-    width: 50% !important;
-  }
-}
+// @media screen and (min-width: 992px) {
+//   .col-4 {
+//     width: 50% !important;
+//   }
+// }
 
-@media screen and (max-width: 992px) {
-  .col-4 {
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
+// @media screen and (max-width: 992px) {
+//   .col-4 {
+//     width: 100% !important;
+//     margin-left: 0 !important;
+//     margin-right: 0 !important;
+//   }
+// }
