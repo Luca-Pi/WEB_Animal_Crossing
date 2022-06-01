@@ -1,11 +1,11 @@
-.character:hover .character-section-image {
-	background-color: $third-hover;
+.character:nth-child(3n + 3) {
+	background-color: $bleu;
 }
 
-.character-section-image {
-	background-color: $third;
+.character:nth-child(3n + 2) {
+	background-color: $bleugris;
 }
 
-.character-name {
-	background-color: $brown;
+.character:nth-child(3n + 1) {
+	background-color: $beige;
 }

@@ -1,10 +1,8 @@
 <template>
-  <q-page padding class="text-center">
-    <q-card>
-      <q-card-section>
+  <q-page class="text-center">
+    <section class="listing-bulle-header">
+      <Bubble>
         <h2>Les insectes des Jeux Animal Crossing</h2>
-      </q-card-section>
-      <q-card-section>
         <p>
           Que vous cherchiez à gagner quelques clochettes ou bien à compléter
           les différentes expositions du musée, il vous faudra vous lancer dans
@@ -12,32 +10,34 @@
           quête pour trouver les 80 insectes différents présents dans Animal
           Crossing New Horizons.
         </p>
-      </q-card-section>
-    </q-card>
-
-    <section id="section-list">
-      <InsectCard
-        v-for="insect in insectsFiltered"
-        :key="insect.id"
-        :id="insect.id"
-        :name="insect.name"
-        :image="insect.image_url"
-        :show-item-collection="true"
-        :has-insect="insect.hasInsect"
-      />
+      </Bubble>
     </section>
 
-    <div class="q-pa-lg flex flex-center">
-      <q-pagination
-        v-if="insects.length > maxItemsPerPage"
-        v-model="currentPage"
-        color="#000"
-        active-text-color="#000"
-        active-color="secondary"
-        :max="Math.ceil(insects.length/maxItemsPerPage)"
-        :max-pages="10"
-      />
-    </div>
+    <Cliff>
+      <section id="section-list">
+        <InsectCard
+          v-for="insect in insectsFiltered"
+          :key="insect.id"
+          :id="insect.id"
+          :name="insect.name"
+          :image="insect.image_url"
+          :show-item-collection="true"
+          :has-insect="insect.hasInsect"
+        />
+      </section>
+
+      <div class="q-pa-lg flex flex-center">
+        <q-pagination
+          v-if="insects.length > maxItemsPerPage"
+          v-model="currentPage"
+          color="#000"
+          active-text-color="#000"
+          active-color="secondary"
+          :max="Math.ceil(insects.length/maxItemsPerPage)"
+          :max-pages="10"
+        />
+      </div>  
+    </Cliff>
   </q-page>
 </template>
 
@@ -45,6 +45,8 @@
 import { onBeforeMount, ref, computed } from "vue";
 
 import InsectCard from "@/components/Cards/Insect.vue";
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 import { useQuasar } from "quasar";
 import { useInsectsStore, type Insect } from "@/stores/insects";

@@ -1,26 +1,37 @@
 <template>
-  <q-page padding class="text-center" v-if="seaCreature">
-    <h1>Créature : {{ seaCreature.name }}</h1>
-
-    <section id="section-sea-creature-detail">
-      <q-img
-        class="sea-creature-image"
-        :src="seaCreature.image_url"
-        fit="scale-down"
-      />
-    </section>
-    <section>
-      <p><span class="text-bold">Période :</span> {{ seaCreature.period }}</p>
-      <p><span class="text-bold">Heures :</span> {{ seaCreature.hours }}</p>
-      <p><span class="text-bold">Lieu :</span> {{ seaCreature.place }}</p>
-      <p>
-        <span class="text-bold">Mouvement :</span> {{ seaCreature.movement }}
-      </p>
-      <p>
-        <span class="text-bold">Prix de vente :</span>
-        {{ seaCreature.price }} clochettes
-      </p>
-    </section>
+  <q-page v-if="seaCreature">
+    <div class="row q-mt-xl">
+        <div class="col flex items-end">
+          <q-img :src="seaCreature?.image_url" class="detail-image" fit="contain" />
+        </div>
+        <div class="col flex items-end q-mb-xl">
+          <Bubble :txt="seaCreature?.name">
+            <div class="row">
+              <div class="col-12 col-lg-4 q-px-xs">
+                <p class="text-bold tag">Période :</p>
+                <p class="info text-center">{{ seaCreature?.period }}</p>
+              </div>
+              <div class="col-12 col-lg-4 q-px-xs">
+                <p class="text-bold tag">Heures :</p>
+                <p class="info text-center">{{ seaCreature?.hours }}</p>
+              </div>
+              <div class="col-12 col-lg-4 q-px-xs">
+                <p class="text-bold tag">Lieu :</p>
+                <p class="info text-center">{{ seaCreature?.place }}</p>
+              </div>
+              <div class="col-12 col-lg-4 q-px-xs">
+                <p class="text-bold tag">Mouvement :</p>
+                <p class="info text-center">{{ seaCreature?.movement }}</p>
+              </div>
+              <div class="col-12 col-lg-4 q-px-xs">
+                <p class="text-bold tag">Prix de vente :</p>
+                <p class="info text-center">{{ seaCreature?.price }} clochettes</p>
+              </div>
+            </div>
+          </Bubble>
+        </div>
+      </div>
+      <Cliff />
   </q-page>
 </template>
 
@@ -30,6 +41,9 @@ import { useRoute } from "vue-router";
 
 import { useQuasar } from "quasar";
 import { useSeaCreaturesStore, type SeaCreature } from "@/stores/seaCreatures";
+
+import Bubble from "@/components/Bubble.vue";
+import Cliff from "@/components/Cliff.vue";
 
 const route = useRoute();
 

@@ -1,0 +1,77 @@
+.bubble--bg{
+    background-color: #FFFAE4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 10%;
+    min-width: 50vw;
+    min-height: 150px;
+    position: relative;
+    border-radius: 25px;
+}
+
+.label{
+    background-color: #E86E88;
+    position: absolute;
+    top: -3%;
+    left: -16%;
+    transform: rotate(-20deg);
+    color: white;
+    border-radius: 99px;
+    font-size: 1rem;
+    padding:5px 15px;
+}
+
+svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;;
+}
+@media (min-width:768px) {
+   
+    .label{
+        top: -3%;
+        left: -5%;
+    }
+}
+@media (min-width:992px) {
+
+    .bubble--bg{
+        background-color: unset;
+        background-image: url("/images/svg/bg--large.svg");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 383px;
+    }
+    .label{
+        top: 12%;
+        left: -5%;
+        font-size: 1.3rem;
+        padding:10px 25px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .label{
+        top: 7%;
+        left: -4%;
+        font-size: 1.3rem;
+        padding:10px 25px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .label{
+        top: 0%;
+        left: 0%;
+    }
+}
+
+@media (min-width: 2000px) {
+    .label{
+        top: 0%;
+        left: 10%;
+    }
+}
