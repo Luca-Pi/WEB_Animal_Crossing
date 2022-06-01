@@ -9,12 +9,16 @@
     overflow: hidden!important;
 }
 
+.cliff--container{
+    position: relative;
+}
 
 .sapin{
     position: absolute!important;
     left: -50%;
-    top: -300px;
+    bottom: 90%;
     z-index: 99;
+    pointer-events: none;
     max-height: 55vh;
 }
 .link--container{
