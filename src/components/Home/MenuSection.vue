@@ -75,7 +75,7 @@ const menuItems: MenuItem[] = [
   &__Menu {
     display: grid;
     width: 1200px;
-    height: 100%;
+    height: 860px;
     padding: 100px;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
