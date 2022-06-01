@@ -89,13 +89,14 @@ async function logout() {
       type: "positive",
     });
 
-    await userStore.logout();
-    router.push({ name: "login" });
+    userStore.logout();
   } catch (error: any) {
     $q.notify({
       message: error || "Une erreur est survenu lors de la déconnexion.",
       type: "negative",
     });
+  } finally {
+    router.push({ name: "login" });
   }
 }
 </script>
