@@ -22,25 +22,6 @@
           </div>
         </RouterLink>
       </div>
-
-      <div class="col text-center" >
-        <span
-          class="text-h5"
-          style="font-size: medium;margin: 2.5%;"
-          >Profil</span
-        >
-        <span
-          class="text-h5"
-          style="font-size: medium; margin: 2.5%;"
-          >Catégorie</span
-        >
-        <span
-          class="text-h5"
-          style="font-size: medium;margin: 2.5%;"
-          >Anniversaire</span
-        >
-      </div>
-
       <q-list class="row text-center col" v-if="userStore.user.id">
         <q-item
           dense
