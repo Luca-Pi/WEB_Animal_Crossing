@@ -105,11 +105,13 @@ const setFurnitures = ref<SetFurniture[]>([]);
 const userStore = useUserStore();
 
 const form = reactive({
-  username: "",
-  description: "",
+  username: userStore.user.username,
+  description: userStore.user.description,
   favoriteSerie: "",
   platforms: [] as PlatformCode[],
 });
+
+const errors = ref<Array<String>>([])
 
 onBeforeMount(async () => {
   platforms.value.forEach((platform) =>
@@ -128,8 +130,7 @@ async function updateProfile() {
 
   try {
     await userStore.update({username, description, favoriteSerie});
-    router.push({name: "update"});
-
+    router.push({name: "profile"});
     $q.notify({
       message: `Ton profil est a jour ${userStore.user.username} !`,
       type: "positive",
