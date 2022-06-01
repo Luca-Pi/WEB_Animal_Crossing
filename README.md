@@ -1,5 +1,7 @@
 # islandcrossing
 
+Ce projet utilise une API (https://github.com/Luca-Pi/API_Animal_Crossing) pour récupérer diverses informations liées aux jeux vidéo de l'univers Animal Crossing.
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -44,3 +46,12 @@ npm run build
 ```sh
 npm run test:unit
 ```
+
+## Equipe
+Logan LE SAUX - logan.lesaux@ynov.com
+
+Nathanaël ALLARD - nathanael.allard@ynov.com
+
+LUCA PILLONI - luca.pilloni@ynov.com
+
+LYES SOUIFI - lyes.souifi@ynov.com
