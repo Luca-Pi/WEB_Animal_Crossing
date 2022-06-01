@@ -84,7 +84,9 @@ import {
   useSetFurnituresStore,
   type SetFurniture,
 } from "@/stores/setFurnitures";
-
+import router from "@/router";
+import {useUserStore} from "@/stores/user";
+import {useQuasar} from "quasar";
 const setFurnituresStore = useSetFurnituresStore();
 
 interface PlatformCode {
@@ -98,7 +100,9 @@ const platforms = ref([
   { label: "Switch", value: "switch", selected: false },
 ]);
 
+const $q = useQuasar();
 const setFurnitures = ref<SetFurniture[]>([]);
+const userStore = useUserStore();
 
 const form = reactive({
   username: "",
@@ -118,10 +122,26 @@ onBeforeMount(async () => {
   setFurnitures.value = await setFurnituresStore.getSetFurnitures();
 });
 
-function updateProfile() {
-  // TODO
-}
+async function updateProfile() {
 
+  const {username, description, favoriteSerie} = form;
+
+  try {
+    await userStore.update({username, description, favoriteSerie});
+    router.push({name: "update"});
+
+    $q.notify({
+      message: `Ton profil est a jour ${userStore.user.username} !`,
+      type: "positive",
+    });
+  } catch (error: any) {
+    $q.notify({
+      message: error || "Une erreur est survenu lors de la mise a jour.",
+      type: "negative",
+    });
+  }
+
+}
 function togglePlatform(index: number) {
   form.platforms[index].code = "";
 }
