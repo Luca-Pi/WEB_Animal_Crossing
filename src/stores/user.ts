@@ -117,23 +117,21 @@ export const useUserStore = defineStore("userStore", () => {
     return new Promise(async (resolve, reject) => {
       const xsrfToken = (await http.get("/api/token")).data;
       const api_token = getToken.value
-      const { success, message } = (
+      try {
+        const data = (
           await http.put(`/api/update?api_token=${api_token}`,form, {
             headers: { "XSRF-TOKEN": xsrfToken },
-          })
-      ).data;
-
-      if (!success) return reject(message);
-
-      const userInformations = (
-          await http.get(`/api/me?api_token=${api_token}`)
-      ).data;
-
-      user.value = {
-        api_token,
-        ...userInformations,
-      };
-
+          })).data
+  
+        user.value = {
+          api_token,
+          ...data,
+        };
+        
+      }
+      catch(e:any) {
+        return reject(e.response.data.errors.description)
+      }
       return resolve(true);
     });
   }
