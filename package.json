@@ -12,6 +12,7 @@
     "@quasar/extras": "^1.12.5",
     "@vueuse/core": "^7.7.1",
     "axios": "^0.26.0",
+    "marked": "^4.0.16",
     "pinia": "^2.0.11",
     "quasar": "^2.5.5",
     "swiper": "^8.0.7",

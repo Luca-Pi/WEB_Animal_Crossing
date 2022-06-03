@@ -55,8 +55,8 @@ const menuItems: MenuItem[] = [
     to: '/',
   },
   {
-    label: 'To do',
-    to: '/',
+    label: 'Blog',
+    to: '/blog',
   },
 ]
 
