@@ -14,6 +14,43 @@
     </section>
 
     <Cliff>
+      <section id="section-filters">
+        <q-select
+            v-model="filters.name"
+            label="Nom de l'insecte"
+            :options="insects"
+            class="field"
+            option-value="name"
+            emit-value
+            option-label="name"
+            @update:model-value="filtersInsects()"
+            clearable
+        />
+
+        <q-select
+            v-model="filters.period"
+            label="Période de capture"
+            :options="periods"
+            class="field"
+            option-value="value"
+            option-label="label"
+            @update:model-value="filtersInsects()"
+            clearable
+        />
+
+        <q-btn-toggle
+            class="q-mt-lg"
+            v-model="filters.hasInsect"
+            toggle-color="primary"
+            :options="[
+            {label: 'Les deux', value: null},
+            {label: 'Pas dans ma collection', value: 'false'},
+            {label: 'Dans ma collection', value: 'true'}
+          ]"
+            emit-value
+            @update:model-value="filtersInsects()"
+        />
+      </section>
       <section id="section-list">
         <InsectCard
           v-for="insect in insectsFiltered"
@@ -42,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, computed } from "vue";
+import {onBeforeMount, ref, computed, reactive} from "vue";
 
 import InsectCard from "@/components/Cards/Insect.vue";
 import Bubble from "@/components/Bubble.vue";
@@ -55,6 +92,67 @@ const $q = useQuasar();
 const insectsStore = useInsectsStore();
 
 const insects = ref<Array<Insect>>([]);
+
+const filters = reactive({
+  name: "",
+  hasInsect: null,
+  period: "",
+});
+
+const periods = reactive([
+  {
+    label: 'Toute l\'année',
+    value: 'All year',
+  },
+  {
+    label: 'Janvier',
+    value: 'Jan',
+  },
+  {
+    label: 'Février',
+    value: 'Feb',
+  },
+  {
+    label: 'Mars',
+    value: 'Mar',
+  },
+  {
+    label: 'Avril',
+    value: 'Apr',
+  },
+  {
+    label: 'Mai',
+    value: 'May',
+  },
+  {
+    label: 'Juin',
+    value: 'Jun',
+  },
+  {
+    label: 'Juillet',
+    value: 'Jul',
+  },
+  {
+    label: 'Août',
+    value: 'Aug',
+  },
+  {
+    label: 'Septembre',
+    value: 'Sep',
+  },
+  {
+    label: 'Octobre',
+    value: 'Oct',
+  },
+  {
+    label: 'Novembre',
+    value: 'Nov',
+  },
+  {
+    label: 'Décembre',
+    value: 'Dec',
+  },
+]);
 
 const currentPage = ref(1);
 const maxItemsPerPage = ref(21);
@@ -76,6 +174,17 @@ onBeforeMount(async () => {
     });
   }
 });
+
+async function filtersInsects() {
+  let query =
+      "&name=" +
+      (filters.name || "") +
+      "&hasInsect=" +
+      (filters.hasInsect || "") +
+      "&period=" +
+      (filters.period['value'] || "")
+  insects.value = await insectsStore.getInsectsFiltered(query);
+}
 </script>
 
 <style scoped>

@@ -73,5 +73,15 @@ export const useSeaCreaturesStore = defineStore("seaCreaturesStore", () => {
     });
   }
 
-  return { getSeaCreatures, getSeaCreature, getSeaCreaturesUser, addSeaCreatureInCollection, removeSeaCreatureFromCollection };
+  function getSeaCreaturesFiltered(params: string): Promise<Insect[]> {
+    return new Promise(async (resolve, reject) => {
+      const seaCreatures = (
+          await http.get(`/api/sea-creatures/search?api_token=${getToken}${params}`)
+      ).data;
+
+      return resolve(seaCreatures);
+    });
+  }
+
+  return { getSeaCreatures, getSeaCreature, getSeaCreaturesUser, addSeaCreatureInCollection, removeSeaCreatureFromCollection, getSeaCreaturesFiltered };
 });

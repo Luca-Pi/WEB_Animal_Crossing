@@ -33,7 +33,6 @@
             label="Période de capture"
             :options="periods"
             class="field"
-            emit-value
             @update:model-value="filtersFishes()"
             clearable
         />
@@ -45,7 +44,7 @@
             :options="[
             {label: 'Les deux', value: null},
             {label: 'Pas dans ma collection', value: 'false'},
-            {label: 'Dans ma collection', value: true}
+            {label: 'Dans ma collection', value: 'true'}
           ]"
             emit-value
             @update:model-value="filtersFishes()"
@@ -104,19 +103,58 @@ const filters = reactive({
 });
 
 const periods = reactive([
-    'Toute l\'année',
-    'Janvier',
-    'Février',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet',
-    'Août',
-    'Septembre',
-    'Octobre',
-    'Novembre',
-    'Décembre',
+  {
+    label: 'Toute l\'année',
+    value: 'All year',
+  },
+  {
+    label: 'Janvier',
+    value: 'Jan',
+  },
+  {
+    label: 'Février',
+    value: 'Feb',
+  },
+  {
+    label: 'Mars',
+    value: 'Mar',
+  },
+  {
+    label: 'Avril',
+    value: 'Apr',
+  },
+  {
+    label: 'Mai',
+    value: 'May',
+  },
+  {
+    label: 'Juin',
+    value: 'Jun',
+  },
+  {
+    label: 'Juillet',
+    value: 'Jul',
+  },
+  {
+    label: 'Août',
+    value: 'Aug',
+  },
+  {
+    label: 'Septembre',
+    value: 'Sep',
+  },
+  {
+    label: 'Octobre',
+    value: 'Oct',
+  },
+  {
+    label: 'Novembre',
+    value: 'Nov',
+  },
+  {
+    label: 'Décembre',
+    value: 'Dec',
+  },
 ]);
 
 const fishesFiltered = computed(() => {
@@ -144,7 +182,7 @@ async function filtersFishes() {
     "&hasFish=" +
     (filters.hasFish || "") +
     "&period=" +
-    (filters.period || "")
+    (filters.period['value'] || "")
   fishes.value = await fishesStore.getFishesFiltered(query);
 }
 </script>
