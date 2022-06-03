@@ -14,6 +14,43 @@
     </section>
 
     <Cliff>
+      <section id="section-filters">
+        <q-select
+            v-model="filters.name"
+            label="Nom de la créature marine"
+            :options="seaCreatures"
+            class="field"
+            option-value="name"
+            emit-value
+            option-label="name"
+            @update:model-value="filtersSeaCreatures()"
+            clearable
+        />
+
+        <q-select
+            v-model="filters.period"
+            label="Période de capture"
+            :options="periods"
+            class="field"
+            option-value="value"
+            option-label="label"
+            @update:model-value="filtersSeaCreatures()"
+            clearable
+        />
+
+        <q-btn-toggle
+            class="q-mt-lg"
+            v-model="filters.hasSeaCreatures"
+            toggle-color="primary"
+            :options="[
+            {label: 'Les deux', value: null},
+            {label: 'Pas dans ma collection', value: 'false'},
+            {label: 'Dans ma collection', value: 'true'}
+          ]"
+            emit-value
+            @update:model-value="filtersSeaCreatures()"
+        />
+      </section>
       <section id="section-list">
         <SeaCreatureCard
           v-for="seaCreature in seaCreaturesFiltered"
@@ -42,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref, computed } from "vue";
+import {onBeforeMount, ref, computed, reactive} from "vue";
 
 import SeaCreatureCard from "@/components/Cards/SeaCreature.vue";
 import Bubble from "@/components/Bubble.vue";
@@ -55,6 +92,66 @@ const $q = useQuasar();
 const seaCreaturesStore = useSeaCreaturesStore();
 
 const seaCreatures = ref<SeaCreature[]>([]);
+const filters = reactive({
+  name: "",
+  hasSeaCreature: null,
+  period: "",
+});
+
+const periods = reactive([
+  {
+    label: 'Toute l\'année',
+    value: 'All year',
+  },
+  {
+    label: 'Janvier',
+    value: 'Jan',
+  },
+  {
+    label: 'Février',
+    value: 'Feb',
+  },
+  {
+    label: 'Mars',
+    value: 'Mar',
+  },
+  {
+    label: 'Avril',
+    value: 'Apr',
+  },
+  {
+    label: 'Mai',
+    value: 'May',
+  },
+  {
+    label: 'Juin',
+    value: 'Jun',
+  },
+  {
+    label: 'Juillet',
+    value: 'Jul',
+  },
+  {
+    label: 'Août',
+    value: 'Aug',
+  },
+  {
+    label: 'Septembre',
+    value: 'Sep',
+  },
+  {
+    label: 'Octobre',
+    value: 'Oct',
+  },
+  {
+    label: 'Novembre',
+    value: 'Nov',
+  },
+  {
+    label: 'Décembre',
+    value: 'Dec',
+  },
+]);
 
 const currentPage = ref(1);
 const maxItemsPerPage = ref(21);
@@ -76,6 +173,17 @@ onBeforeMount(async () => {
     });
   }
 });
+
+async function filtersSeaCreatures() {
+  let query =
+      "&name=" +
+      (filters.name || "") +
+      "&hasSeaCreature=" +
+      (filters.hasSeaCreature || "") +
+      "&period=" +
+      (filters.period['value'] || "")
+  seaCreatures.value = await seaCreaturesStore.getSeaCreaturesFiltered(query);
+}
 </script>
 
 <style scoped>
