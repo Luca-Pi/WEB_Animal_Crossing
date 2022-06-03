@@ -45,7 +45,7 @@
             :options="[
             {label: 'Les deux', value: null},
             {label: 'Pas dans ma collection', value: 'false'},
-            {label: 'Dans ma collection', value: true}
+            {label: 'Dans ma collection', value: 'true'}
           ]"
             emit-value
             @update:model-value="filtersFishes()"

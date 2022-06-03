@@ -71,11 +71,22 @@ export const useInsectsStore = defineStore("insectsStore", () => {
     });
   }
 
+  function getInsectsFiltered(params: string): Promise<Insect[]> {
+    return new Promise(async (resolve, reject) => {
+      const insects = (
+          await http.get(`/api/insects/search?api_token=${getToken}${params}`)
+      ).data;
+
+      return resolve(insects);
+    });
+  }
+
   return {
     getInsects,
     getInsect,
     getInsectsUser,
     addInsectInCollection,
     removeInsectFromCollection,
+    getInsectsFiltered,
   };
 });
