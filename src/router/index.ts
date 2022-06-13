@@ -12,6 +12,7 @@ import NotFound from "@/views/Auth/404.vue";
 // Blog
 import Blogs from "@/views/Blog/Blogs.vue";
 import Blog from "@/views/Blog/Blog.vue";
+import New_Article from "@/views/Blog/New_Article.vue";
 
 // Villagers
 const Villagers = () => import("@/views/Villagers/Villagers.vue");
@@ -199,9 +200,17 @@ const router = createRouter({
       },
     },
     {
-      path: "/blog/:slug",
+      path: "/blog/:id",
       name: "blog-post",
       component: Blog,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/new-article",
+      name: "new-article",
+      component: New_Article,
       meta: {
         requiresAuth: true,
       },

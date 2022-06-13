@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/article/${post.id}`">
+  <router-link :to="`/blog/${post.id}`">
     <q-card class="my-card">
       <q-item>
         <q-item-section avatar>

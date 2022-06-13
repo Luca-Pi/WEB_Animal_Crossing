@@ -1,6 +1,11 @@
 <template>
   <q-page class="text-center">
     <BlogCard :v-if="posts?.length > 0" v-for="post in posts" :key="post.id" :post="post"/>
+    <router-link to="/new-article">
+      <q-btn color="primary" >
+        Nouvelle article
+      </q-btn>
+    </router-link>
   </q-page>
 </template>
 
@@ -9,6 +14,7 @@ import { useBlogStore, type Article } from "@/stores/blog";
 import { useQuasar } from "quasar";
 import { onBeforeMount, ref } from '@vue/runtime-core';
 import BlogCard from '@/components/Blog/BlogCard.vue';
+import { RouterLink } from "vue-router";
 
 const $q = useQuasar();
 const blogStore = useBlogStore();
