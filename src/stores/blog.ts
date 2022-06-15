@@ -25,7 +25,9 @@ interface ArticleForm {
   id?: number;
   title?: string;
   content?: string;
-  author?: string;
+  user_id?: string;
+  image?:any;
+  category_id:string;
 }
 export const useBlogStore = defineStore("BlogStore", () => {
   const { getToken } = useUserStore();
@@ -63,8 +65,16 @@ export const useBlogStore = defineStore("BlogStore", () => {
   
 
   async function postArticle(data:ArticleForm) {
+    var formData = new FormData();
+    //console.log(data.category_id.id)
+    formData.append('image',data.image[0]);
+    formData.append('title',data.title);
+    formData.append('content',data.content);
+    formData.append('category_id',data.category_id.id);
+    formData.append('user_id',"1");
+
       try{
-        await http.post(`/api/publications/?api_token=${getToken}`,data)
+        await http.post(`/api/publications/?api_token=${getToken}`,formData)
         return true
       }catch(e){
         return false
