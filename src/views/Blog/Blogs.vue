@@ -1,8 +1,11 @@
 <template>
   <q-page class="text-center">
-    <BlogCard :v-if="posts?.length > 0" v-for="post in posts" :key="post.id" :post="post"/>
+    <div class="row">
+      <BlogCard :v-if="posts?.length > 0" v-for="post in posts" :key="post.id" :post="post"/>
+      
+    </div>
     <router-link to="/new-article">
-      <q-btn color="primary" >
+      <q-btn color="secondary" >
         Nouvelle article
       </q-btn>
     </router-link>

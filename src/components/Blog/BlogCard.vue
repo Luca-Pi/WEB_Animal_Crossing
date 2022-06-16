@@ -1,21 +1,20 @@
 <template>
-  <router-link :to="`/blog/${post.id}`">
-    <q-card class="my-card">
-      <q-item>
-        <q-item-section avatar>
-          <q-avatar>
-            <!-- <img :src="props..icon"> -->
-          </q-avatar>
-        </q-item-section>
-
-        <q-item-section>
-          <q-item-label>{{props?.post?.title}}</q-item-label>
-          <q-item-label caption>{{props?.post?.author}}</q-item-label>
-        </q-item-section>
-      </q-item>
-       <!-- <img :src="props?.post?.img_url" /> -->
-    </q-card>
-  </router-link>
+  <div class="col-4">
+    <router-link :to="`/blog/${post.id}`">
+      <q-card class="my-card" flat bordered>
+        <q-card-section horizontal>
+          <q-card-section>
+            {{ props?.post?.content }}
+          </q-card-section>
+  
+          <q-img
+            class="col-5"
+             :src="'http://localhost:8000'+props?.post?.image_url"
+          />
+        </q-card-section>
+      </q-card>
+    </router-link>
+  </div>
 </template>
 <script lang="ts" setup>
 import {ref} from "vue"
