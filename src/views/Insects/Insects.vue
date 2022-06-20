@@ -122,13 +122,18 @@ onBeforeMount(async () => {
 });
 
 async function filtersInsects() {
+  let period = null
+  if (filters.period) {
+    period = filters.period['value']
+  }
+
   let query =
       "&name=" +
       (filters.name || "") +
       "&hasInsect=" +
       (filters.hasInsect || "") +
       "&period=" +
-      (filters.period['value'] || "")
+      (period || "")
   insects.value = await insectsStore.getInsectsFiltered(query);
 }
 </script>

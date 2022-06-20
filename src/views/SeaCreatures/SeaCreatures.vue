@@ -121,13 +121,18 @@ onBeforeMount(async () => {
 });
 
 async function filtersSeaCreatures() {
+  let period = null
+  if (filters.period) {
+    period = filters.period['value']
+  }
+
   let query =
       "&name=" +
       (filters.name || "") +
       "&hasSeaCreature=" +
       (filters.hasSeaCreature || "") +
       "&period=" +
-      (filters.period['value'] || "")
+      (period || "")
   seaCreatures.value = await seaCreaturesStore.getSeaCreaturesFiltered(query);
 }
 </script>
