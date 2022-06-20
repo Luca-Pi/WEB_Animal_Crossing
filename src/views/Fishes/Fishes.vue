@@ -84,6 +84,7 @@ import { onBeforeMount, reactive, ref, computed } from "vue";
 import FishCard from "@/components/Cards/Fish.vue";
 import Bubble from "@/components/Bubble.vue";
 import Cliff from "@/components/Cliff.vue";
+import PERIODS from "@/const";
 
 import { useQuasar } from "quasar";
 import { useFishesStore, type Fish } from "@/stores/fishes";
@@ -101,61 +102,6 @@ const filters = reactive({
   hasFish: null,
   period: "",
 });
-
-const periods = reactive([
-  {
-    label: 'Toute l\'année',
-    value: 'All year',
-  },
-  {
-    label: 'Janvier',
-    value: 'Jan',
-  },
-  {
-    label: 'Février',
-    value: 'Feb',
-  },
-  {
-    label: 'Mars',
-    value: 'Mar',
-  },
-  {
-    label: 'Avril',
-    value: 'Apr',
-  },
-  {
-    label: 'Mai',
-    value: 'May',
-  },
-  {
-    label: 'Juin',
-    value: 'Jun',
-  },
-  {
-    label: 'Juillet',
-    value: 'Jul',
-  },
-  {
-    label: 'Août',
-    value: 'Aug',
-  },
-  {
-    label: 'Septembre',
-    value: 'Sep',
-  },
-  {
-    label: 'Octobre',
-    value: 'Oct',
-  },
-  {
-    label: 'Novembre',
-    value: 'Nov',
-  },
-  {
-    label: 'Décembre',
-    value: 'Dec',
-  },
-]);
 
 const fishesFiltered = computed(() => {
   return fishes.value.slice(
