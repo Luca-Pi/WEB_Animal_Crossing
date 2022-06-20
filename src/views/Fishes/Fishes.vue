@@ -84,7 +84,7 @@ import { onBeforeMount, reactive, ref, computed } from "vue";
 import FishCard from "@/components/Cards/Fish.vue";
 import Bubble from "@/components/Bubble.vue";
 import Cliff from "@/components/Cliff.vue";
-import PERIODS from "@/const";
+import PERIODS from "@/consts";
 
 import { useQuasar } from "quasar";
 import { useFishesStore, type Fish } from "@/stores/fishes";
