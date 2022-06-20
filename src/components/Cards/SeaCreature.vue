@@ -51,7 +51,6 @@ function addOrRemoveFromCollection(id: number | undefined) {
 
 onBeforeMount(async () => {
   checkedSeaCreature.value = props.hasSeaCreature;
-  console.log(props)
 });
 </script>
 
