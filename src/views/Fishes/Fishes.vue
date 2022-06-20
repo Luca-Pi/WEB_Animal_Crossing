@@ -31,7 +31,7 @@
         <q-select
             v-model="filters.period"
             label="Période de capture"
-            :options="periods"
+            :options="PERIODS"
             class="field"
             @update:model-value="filtersFishes()"
             clearable
