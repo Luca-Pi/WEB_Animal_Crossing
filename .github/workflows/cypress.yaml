@@ -4,7 +4,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     env:
-      VITE_API_BASE_URL: "localhost:8080"
+      VITE_API_BASE_URL: "localhost:8000"
     steps:
       - name: Checkout
         uses: actions/checkout@v2

@@ -35,7 +35,7 @@ declare global {
 }
 
 Cypress.Commands.add("mock", (route: String, payload: any) => {
-  cy.intercept(`${Cypress.env("API_URL")}${route}`, {
+  cy.intercept(`${Cypress.env("API_URL")}/api/${route}`, {
     statusCode: 200,
     body: payload
   })
